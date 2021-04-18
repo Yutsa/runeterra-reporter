@@ -34,4 +34,14 @@ public class TestCard {
         // Then
         assertThat(code).startsWith("03");        
     }
+    
+    @Test
+    void if_a_card_is_from_the_empire_of_the_ascended_release_set_then_the_first_two_digits_of_its_code_should_be_04() {
+        // Given
+        Card card = new Card(CardReleaseSet.EMPIRE_OF_THE_ASCENDED);
+        // When
+        String code = card.getCode();
+        // Then
+        assertThat(code).startsWith("04");        
+    }
 }
