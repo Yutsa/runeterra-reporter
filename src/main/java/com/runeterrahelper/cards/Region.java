@@ -1,7 +1,7 @@
 package com.runeterrahelper.cards;
 
 public enum Region {
-    DEMACIA("DE");
+    DEMACIA("DE"), FRELJORD("FR"), IONIA("IO");
 
     private final String regionCode;
 
