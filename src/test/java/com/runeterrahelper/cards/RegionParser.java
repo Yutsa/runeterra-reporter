@@ -2,10 +2,25 @@ package com.runeterrahelper.cards;
 
 public class RegionParser {
     public static Region parse(String regionName) {
-        if (regionName.equals("Demacia")) {
-            return Region.DEMACIA;
-        } else if (regionName.equals("Freljord")) {
-            return Region.FRELJORD;
+        switch (regionName) {
+            case "Demacia":
+                return Region.DEMACIA;
+            case "Freljord":
+                return Region.FRELJORD;
+            case "Ionia":
+                return Region.IONIA;
+            case "Noxus":
+                return Region.NOXUS;
+            case "Piltover & Zaun":
+                return Region.PILTOVER_AND_ZAUN;
+            case "Shadow Isles":
+                return Region.SHADOW_ISLES;
+            case "Bilgewater":
+                return Region.BILGEWATER;
+            case "Mount Targon":
+                return Region.MOUNT_TARGON;
+            case "Shurima":
+                return Region.SHURIMA;
         }
         return Region.DEMACIA;
     }

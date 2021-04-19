@@ -1,9 +1,6 @@
 package com.runeterrahelper.steps;
 
-import com.runeterrahelper.cards.Card;
-import com.runeterrahelper.cards.CardReleaseSet;
-import com.runeterrahelper.cards.Region;
-import com.runeterrahelper.cards.RegionParser;
+import com.runeterrahelper.cards.*;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -28,5 +25,15 @@ public class CardStepDefinitions {
     @Then("the third and fourth characters from the code should be {string}")
     public void the_third_and_fourth_caracters_from_the_code_should_be(String regionCode) {
         assertThat(code.substring(2)).isEqualTo(regionCode);
+    }
+
+    @Given("a card from the {string} release set")
+    public void aCardFromTheReleaseSet(String releaseSet) {
+        card = new Card(ReleaseSetParser.parse(releaseSet), Region.NOXUS);
+    }
+
+    @Then("the first two characters from the code should be {string}")
+    public void theFirstTwoCharactersFromTheCodeShouldBe(String releaseSetCode) {
+        assertThat(code).startsWith(releaseSetCode);
     }
 }
