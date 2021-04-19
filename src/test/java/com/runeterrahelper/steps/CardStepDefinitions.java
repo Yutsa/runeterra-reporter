@@ -14,19 +14,13 @@ public class CardStepDefinitions {
     private Card card;
     private String code;
 
-    @Given("a card from the Demacia region")
-    public void a_card_from_the_demacia_region() {
-        card = new Card(CardReleaseSet.EMPIRE_OF_THE_ASCENDED, Region.DEMACIA);
-    }
-
-    @Given("a card from the Ionia region")
-    public void a_card_from_the_ionia_region() {
-        card = new Card(CardReleaseSet.EMPIRE_OF_THE_ASCENDED, Region.IONIA);
-    }
-
-    @Given("a card from the Freljord region")
-    public void a_card_from_the_freljord_region() {
-        card = new Card(CardReleaseSet.EMPIRE_OF_THE_ASCENDED, Region.FRELJORD);
+    @Given("a card from the {string} region")
+    public void aCardFromTheRegion(String region) {
+        if (region.equals("Demacia")) {
+            card = new Card(CardReleaseSet.FOUNDATION, Region.DEMACIA);
+        } else if (region.equals("Freljord")) {
+            card = new Card(CardReleaseSet.FOUNDATION, Region.FRELJORD);
+        }
     }
 
     @When("the code of the card is computed")

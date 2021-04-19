@@ -1,16 +1,10 @@
 Feature: Computing the card code of a card
-  
-  Scenario: A card from Demacia
-    Given a card from the Demacia region
-    When the code of the card is computed
-    Then the third and fourth characters from the code should be "DE"
 
-  Scenario: A card from Freljord
-    Given a card from the Freljord region
+  Scenario Outline: The code of the region is in the code of the card
+    Given a card from the "<region>" region
     When the code of the card is computed
-    Then the third and fourth characters from the code should be "FR"
-
-  Scenario: A card from Ionia
-    Given a card from the Ionia region
-    When the code of the card is computed
-    Then the third and fourth characters from the code should be "IO"
+    Then the third and fourth characters from the code should be "<regionCode>"
+    Examples:
+      | region   | regionCode |
+      | Demacia  | DE         |
+      | Freljord | FR         |
