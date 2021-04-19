@@ -3,6 +3,7 @@ package com.runeterrahelper.steps;
 import com.runeterrahelper.cards.Card;
 import com.runeterrahelper.cards.CardReleaseSet;
 import com.runeterrahelper.cards.Region;
+import com.runeterrahelper.cards.RegionParser;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -15,12 +16,8 @@ public class CardStepDefinitions {
     private String code;
 
     @Given("a card from the {string} region")
-    public void aCardFromTheRegion(String region) {
-        if (region.equals("Demacia")) {
-            card = new Card(CardReleaseSet.FOUNDATION, Region.DEMACIA);
-        } else if (region.equals("Freljord")) {
-            card = new Card(CardReleaseSet.FOUNDATION, Region.FRELJORD);
-        }
+    public void aCardFromTheRegion(String regionName) {
+        card = new Card(CardReleaseSet.FOUNDATION, RegionParser.parse(regionName));
     }
 
     @When("the code of the card is computed")
