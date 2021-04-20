@@ -2,6 +2,8 @@ package com.runeterrahelper.steps;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import org.assertj.core.api.*;
+
 import com.runeterrahelper.cards.*;
 import io.cucumber.java.en.*;
 
@@ -9,6 +11,7 @@ public class CardStepDefinitions {
 
   private String code;
   private CardBuilder cardBuilder;
+  private Card card;
 
   @When("the code of the card is computed")
   public void i_compute_the_code_from_the_card() {
@@ -53,5 +56,24 @@ public class CardStepDefinitions {
   @Then("the code should be {string}")
   public void theCodeShouldBe(String cardCode) {
     assertThat(code).isEqualTo(cardCode);
+  }
+
+  @Given("the card code {string}")
+  public void theCardCode(String cardCode) {
+    code = cardCode;
+  }
+
+  @When("a card is created from the card code")
+  public void aCardIsCreatedFromTheCardCode() {
+    card = Card.fromCode(code);
+  }
+
+  @Then("the created card should be of release se {string}, region {string} with the number {string}")
+  public void theCreatedCardShouldBeOfReleaseSeRegionWithTheNumber(String releaseSet, String region, String cardNumber) {
+    SoftAssertions.assertSoftly(softly -> {
+      softly.assertThat(card.getRegion()).isEqualTo(RegionParser.parse(region));
+      softly.assertThat(card.getReleaseSet()).isEqualTo(ReleaseSetParser.parse(releaseSet));
+      softly.assertThat(card.getCardNumber()).isEqualTo(Integer.parseInt(cardNumber));
+    });
   }
 }

@@ -62,3 +62,20 @@ Feature: Computing the card code of a card
       | Empire of the Ascended | Bilgewater      | 85         | 04BW085  |
       | Foundation             | Mount Targon    | 54         | 01MT054  |
       | Rising Tides           | Shurima         | 7          | 02SH007  |
+
+  Scenario Outline: Creating a card from its code
+    Given the card code "<cardCode>"
+    When a card is created from the card code
+    Then the created card should be of release se "<releaseSet>", region "<region>" with the number "<cardNumber>"
+    Examples:
+      | releaseSet             | region          | cardNumber | cardCode |
+      | Foundation             | Demacia         | 123        | 01DE123  |
+      | Rising Tides           | Freljord        | 001        | 02FR001  |
+      | Call of the Mountain   | Ionia           | 002        | 03IO002  |
+      | Empire of the Ascended | Noxus           | 999        | 04NX999  |
+      | Foundation             | Demacia         | 756        | 01DE756  |
+      | Rising Tides           | Piltover & Zaun | 45         | 02PZ045  |
+      | Call of the Mountain   | Shadow Isles    | 1          | 03SI001  |
+      | Empire of the Ascended | Bilgewater      | 85         | 04BW085  |
+      | Foundation             | Mount Targon    | 54         | 01MT054  |
+      | Rising Tides           | Shurima         | 7          | 02SH007  |
