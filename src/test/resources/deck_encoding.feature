@@ -3,11 +3,14 @@ Feature: Deck encoding
   Scenario Outline: The cards should be grouped by copies
     Given a deck
     And the deck contains the following "<cards>"
-    When the deck is sorted
-    Then the cards should be order this way "<order>"
+    Then the cards in the 3ofs should be "<threeOfs>"
+    And the cards in the 2ofs should be "<twoOfs>"
+    And the cards in the 1ofs should be "<oneOfs>"
     Examples:
-      | cards     | order     |
-      | 3:01NX004 | 3:01NX004 |
+      | cards                         | threeOfs  | twoOfs    | oneOfs    |
+      | 3:01NX004                     | 3:01NX004 |           |           |
+      | 3:02NX004,2:01DE005           | 3:02NX004 | 2:01DE005 |           |
+      | 3:02NX004,2:01DE005,1:04MT456 | 3:02NX004 | 2:01DE005 | 1:04MT456 |
 
 
 #  Scenario Outline: Encoding a deck with one region and only 3 ofs
