@@ -38,4 +38,9 @@ public class CardCopies {
   public int hashCode() {
     return Objects.hash(numberOfCopies, card);
   }
+
+  @Override
+  public String toString() {
+    return "" + numberOfCopies + "x" + card.getCode();
+  }
 }
