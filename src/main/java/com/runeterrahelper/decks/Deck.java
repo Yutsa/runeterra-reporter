@@ -3,6 +3,8 @@ package com.runeterrahelper.decks;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import com.runeterrahelper.cards.Card;
+
 public class Deck {
 
   private final List<CardCopies> cards = new ArrayList<>();
@@ -15,21 +17,22 @@ public class Deck {
     return cards;
   }
 
-  public List<CardCopies> oneOfs() {
+  public List<Card> oneOfs() {
     return retrieveCardsInXCopies(1);
   }
 
-  public List<CardCopies> twoOfs() {
+  public List<Card> twoOfs() {
     return retrieveCardsInXCopies(2);
   }
 
-  public List<CardCopies> threeOfs() {
+  public List<Card> threeOfs() {
     return retrieveCardsInXCopies(3);
   }
 
-  private List<CardCopies> retrieveCardsInXCopies(int copies) {
+  private List<Card> retrieveCardsInXCopies(int copies) {
     return cards.stream()
                 .filter(cardCopies -> cardCopies.getNumberOfCopies() == copies)
+                .map(CardCopies::getCard)
                 .collect(Collectors.toList());
   }
 }

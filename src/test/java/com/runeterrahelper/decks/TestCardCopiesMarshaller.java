@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import com.runeterrahelper.cards.Card;
 
-public class TestCardCopiesParser {
+public class TestCardCopiesMarshaller {
 
   @Test
   void should_return_1_copy_of_card_01DE001_if_input_is_1_colon_01DE001() {
@@ -15,7 +15,7 @@ public class TestCardCopiesParser {
     String input = "1:01DE001";
     List<CardCopies> expected = List.of(new CardCopies(1, Card.fromCode("01DE001")));
     // When
-    List<CardCopies> result = CardCopiesParser.parse(input);
+    List<CardCopies> result = CardCopiesMarshaller.unmarshall(input);
     // Then
     Assertions.assertThat(result).isEqualTo(expected);
   }
@@ -26,7 +26,7 @@ public class TestCardCopiesParser {
     String input = "1:03FR002";
     List<CardCopies> expected = List.of(new CardCopies(1, Card.fromCode("03FR002")));
     // When
-    List<CardCopies> result = CardCopiesParser.parse(input);
+    List<CardCopies> result = CardCopiesMarshaller.unmarshall(input);
     // Then
     Assertions.assertThat(result).isEqualTo(expected);
   }
@@ -37,7 +37,7 @@ public class TestCardCopiesParser {
     String input = "2:03FR003";
     List<CardCopies> expected = List.of(new CardCopies(2, Card.fromCode("03FR003")));
     // When
-    List<CardCopies> result = CardCopiesParser.parse(input);
+    List<CardCopies> result = CardCopiesMarshaller.unmarshall(input);
     // Then
     Assertions.assertThat(result).isEqualTo(expected);
   }
@@ -48,7 +48,7 @@ public class TestCardCopiesParser {
     String input = "3:03FR004";
     List<CardCopies> expected = List.of(new CardCopies(3, Card.fromCode("03FR004")));
     // When
-    List<CardCopies> result = CardCopiesParser.parse(input);
+    List<CardCopies> result = CardCopiesMarshaller.unmarshall(input);
     // Then
     Assertions.assertThat(result).isEqualTo(expected);
   }
@@ -62,7 +62,7 @@ public class TestCardCopiesParser {
       new CardCopies(2, Card.fromCode("04MT001"))
     );
     // When
-    List<CardCopies> result = CardCopiesParser.parse(input);
+    List<CardCopies> result = CardCopiesMarshaller.unmarshall(input);
     // Then
     Assertions.assertThat(result).isEqualTo(expected);
   }
@@ -77,7 +77,7 @@ public class TestCardCopiesParser {
       new CardCopies(1, Card.fromCode("02SH001"))
     );
     // When
-    List<CardCopies> result = CardCopiesParser.parse(input);
+    List<CardCopies> result = CardCopiesMarshaller.unmarshall(input);
     // Then
     Assertions.assertThat(result).isEqualTo(expected);
   }
@@ -88,7 +88,7 @@ public class TestCardCopiesParser {
     String expected = "1:01DE001";
     List<CardCopies> input = List.of(new CardCopies(1, Card.fromCode("01DE001")));
     // When
-    String result = CardCopiesParser.marshall(input);
+    String result = CardCopiesMarshaller.marshall(input);
     // Then
     Assertions.assertThat(result).isEqualTo(expected);
   }
@@ -99,7 +99,7 @@ public class TestCardCopiesParser {
     String expected = "2:02DE001";
     List<CardCopies> input = List.of(new CardCopies(2, Card.fromCode("02DE001")));
     // When
-    String result = CardCopiesParser.marshall(input);
+    String result = CardCopiesMarshaller.marshall(input);
     // Then
     Assertions.assertThat(result).isEqualTo(expected);
   }
@@ -113,7 +113,7 @@ public class TestCardCopiesParser {
       new CardCopies(3, Card.fromCode("04IO001"))
     );
     // When
-    String result = CardCopiesParser.marshall(input);
+    String result = CardCopiesMarshaller.marshall(input);
     // Then
     Assertions.assertThat(result).isEqualTo(expected);
   }
@@ -128,7 +128,7 @@ public class TestCardCopiesParser {
       new CardCopies(1, Card.fromCode("01MT001"))
     );
     // When
-    String result = CardCopiesParser.marshall(input);
+    String result = CardCopiesMarshaller.marshall(input);
     // Then
     Assertions.assertThat(result).isEqualTo(expected);
   }

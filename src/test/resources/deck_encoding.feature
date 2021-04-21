@@ -7,10 +7,13 @@ Feature: Deck encoding
     And the cards in the 2ofs should be "<twoOfs>"
     And the cards in the 1ofs should be "<oneOfs>"
     Examples:
-      | cards                         | threeOfs  | twoOfs    | oneOfs    |
-      | 3:01NX004                     | 3:01NX004 |           |           |
-      | 3:02NX004,2:01DE005           | 3:02NX004 | 2:01DE005 |           |
-      | 3:02NX004,2:01DE005,1:04MT456 | 3:02NX004 | 2:01DE005 | 1:04MT456 |
+      | cards                                   | threeOfs        | twoOfs          | oneOfs          |
+      | 3:01NX004                               | 01NX004         |                 |                 |
+      | 3:02NX004,2:01DE005                     | 02NX004         | 01DE005         |                 |
+      | 3:02NX004,2:01DE005,1:04MT456           | 02NX004         | 01DE005         | 04MT456         |
+      | 3:02NX004,3:01DE001,2:01DE005,1:04MT456 | 02NX004,01DE001 | 01DE005         | 04MT456         |
+      | 3:02NX004,2:01DE005,2:01DE001,1:04MT456 | 02NX004         | 01DE005,01DE001 | 04MT456         |
+      | 3:02NX004,2:01DE005,1:04MT456,1:01DE001 | 02NX004         | 01DE005         | 04MT456,01DE001 |
 
 
 #  Scenario Outline: Encoding a deck with one region and only 3 ofs

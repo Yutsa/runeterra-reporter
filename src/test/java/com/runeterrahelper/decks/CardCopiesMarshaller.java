@@ -6,9 +6,9 @@ import java.util.stream.Collectors;
 
 import com.runeterrahelper.cards.Card;
 
-public class CardCopiesParser {
+public class CardCopiesMarshaller {
 
-  public static List<CardCopies> parse(final String cards) {
+  public static List<CardCopies> unmarshall(final String cards) {
     return Arrays.stream(cards.split(","))
                  .map(cardCopies -> cardCopies.split(":"))
                  .map(createCardCopiesFromSplittedString())
@@ -21,7 +21,7 @@ public class CardCopiesParser {
 
   public static String marshall(final List<CardCopies> listOfCardCopies) {
     return listOfCardCopies.stream()
-      .map(CardCopiesParser::marshall)
+      .map(CardCopiesMarshaller::marshall)
       .collect(Collectors.joining(","));
   }
 
