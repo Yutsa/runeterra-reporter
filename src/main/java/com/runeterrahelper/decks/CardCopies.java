@@ -22,6 +22,10 @@ public class CardCopies {
     return card;
   }
 
+  public String cardCode() {
+    return card.getCode();
+  }
+
   @Override
   public boolean equals(final Object o) {
     if (this == o) {

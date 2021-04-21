@@ -40,6 +40,6 @@ public class DeckStepDefinitions {
 
   @Then("the cards should be order this way {string}")
   public void theCardsShouldBeOrderThisWay(String cardCopies) {
-    Assertions.assertThat(CardCopiesParser.marshall(sortedDeck)).isEqualTo(cardCopies);
+    Assertions.assertThat(CardCopiesParser.marshall(sortedDeck.getCards())).isEqualTo(cardCopies);
   }
 }
