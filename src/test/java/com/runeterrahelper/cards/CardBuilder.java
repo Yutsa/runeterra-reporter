@@ -1,7 +1,7 @@
 package com.runeterrahelper.cards;
 
 public class CardBuilder {
-    private CardReleaseSet releaseSet = CardReleaseSet.FOUNDATION;
+    private ReleaseSet releaseSet = ReleaseSet.FOUNDATION;
     private Region region = Region.DEMACIA;
     private int cardNumber = 1;
 
@@ -9,8 +9,8 @@ public class CardBuilder {
         return new CardBuilder();
     }
 
-    public CardBuilder withReleaseSet(CardReleaseSet cardReleaseSet) {
-        this.releaseSet = cardReleaseSet;
+    public CardBuilder withReleaseSet(ReleaseSet releaseSet) {
+        this.releaseSet = releaseSet;
         return this;
     }
 

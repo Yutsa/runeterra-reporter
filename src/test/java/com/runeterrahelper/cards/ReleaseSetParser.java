@@ -1,17 +1,17 @@
 package com.runeterrahelper.cards;
 
 public class ReleaseSetParser {
-    public static CardReleaseSet parse(String releaseSet) {
+    public static ReleaseSet parse(String releaseSet) {
         switch (releaseSet) {
             case "Foundation":
-                return CardReleaseSet.FOUNDATION;
+                return ReleaseSet.FOUNDATION;
             case "Rising Tides":
-                return CardReleaseSet.RISING_TIDES;
+                return ReleaseSet.RISING_TIDES;
             case "Call of the Mountain":
-                return CardReleaseSet.CALL_OF_THE_MOUNTAIN;
+                return ReleaseSet.CALL_OF_THE_MOUNTAIN;
             case "Empire of the Ascended":
-                return CardReleaseSet.EMPIRE_OF_THE_ASCENDED;
+                return ReleaseSet.EMPIRE_OF_THE_ASCENDED;
         }
-        return CardReleaseSet.FOUNDATION;
+        return ReleaseSet.FOUNDATION;
     }
 }

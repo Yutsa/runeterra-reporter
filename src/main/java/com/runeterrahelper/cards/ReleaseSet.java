@@ -2,7 +2,7 @@ package com.runeterrahelper.cards;
 
 import java.util.Arrays;
 
-public enum CardReleaseSet {
+public enum ReleaseSet {
   FOUNDATION("01"),
   RISING_TIDES("02"),
   CALL_OF_THE_MOUNTAIN("03"),
@@ -10,11 +10,11 @@ public enum CardReleaseSet {
 
   private final String releaseSetCode;
 
-  CardReleaseSet(String releaseSetCode) {
+  ReleaseSet(String releaseSetCode) {
     this.releaseSetCode = releaseSetCode;
   }
 
-  public static CardReleaseSet fromString(final String setCode) {
+  public static ReleaseSet fromString(final String setCode) {
     return Arrays.stream(values())
                  .filter(releaseSet -> releaseSet.getReleaseSetCode().equals(setCode))
                  .findFirst()

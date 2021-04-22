@@ -6,11 +6,11 @@ import org.apache.commons.lang.StringUtils;
 
 public class Card {
 
-  private final CardReleaseSet releaseSet;
+  private final ReleaseSet releaseSet;
   private final Region region;
   private final int cardNumber;
 
-  public Card(CardReleaseSet releaseSet, Region region, int cardNumber) {
+  public Card(ReleaseSet releaseSet, Region region, int cardNumber) {
     this.releaseSet = releaseSet;
     this.region = region;
     this.cardNumber = cardNumber;
@@ -20,7 +20,7 @@ public class Card {
     String setCode = code.substring(0, 2);
     String regionCode = code.substring(2, 4);
     String cardNumber = code.substring(4);
-    return new Card(CardReleaseSet.fromString(setCode), Region.fromString(regionCode), Integer.parseInt(cardNumber));
+    return new Card(ReleaseSet.fromString(setCode), Region.fromString(regionCode), Integer.parseInt(cardNumber));
   }
 
   public String getCode() {
@@ -39,7 +39,7 @@ public class Card {
     return cardNumber;
   }
 
-  public CardReleaseSet getReleaseSet() {
+  public ReleaseSet getReleaseSet() {
     return releaseSet;
   }
 
