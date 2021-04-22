@@ -18,7 +18,7 @@ public enum ReleaseSet {
     return Arrays.stream(values())
                  .filter(releaseSet -> releaseSet.getReleaseSetCode().equals(setCode))
                  .findFirst()
-                 .orElse(FOUNDATION);
+                 .orElseThrow();
   }
 
   public String getReleaseSetCode() {

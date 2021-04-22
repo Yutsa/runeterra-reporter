@@ -23,7 +23,7 @@ public enum Region {
         return Arrays.stream(values())
               .filter(region -> region.getRegionCode().equals(regionCode))
               .findFirst()
-              .orElse(DEMACIA);
+              .orElseThrow();
     }
 
     public String getRegionCode() {
