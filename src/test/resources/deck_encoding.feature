@@ -1,6 +1,6 @@
 Feature: Deck encoding
 
-  Scenario Outline: The cards should be grouped by copies
+  Scenario Outline: A deck is made of a cards in three, two or one copies
     Given a deck
     And the deck contains the following "<cards>"
     Then the cards in the 3ofs should be "<threeOfs>"
@@ -15,6 +15,23 @@ Feature: Deck encoding
       | 3:02NX004,2:01DE005,2:01DE001,1:04MT456 | 02NX004         | 01DE005,01DE001 | 04MT456         |
       | 3:02NX004,2:01DE005,1:04MT456,1:01DE001 | 02NX004         | 01DE005         | 04MT456,01DE001 |
 
+  Scenario Outline: The cards are sorted by number of copies, creating 3 groups.
+  The first group is the one with 3 copies, then 2 copies and 1 copies.
+  In those groups the cards are then grouped by set/region pair.
+  The set/region groups are sorted by increasing length.
+  Cards in each group are sorted alphanumerically.
+    Given a deck
+    And the deck contains the following "<cards>"
+    When the deck is sorted
+    Then the sorted deck should be "<sortedDeck>"
+    Examples:
+      | cards                         | sortedDeck              |
+      | 3:01NX004                     | 01NX004                 |
+      | 3:01NX004,3:01NX005           | 01NX004,01NX005         |
+      | 2:01NX004,3:01NX005           | 01NX005,01NX004         |
+      | 2:01NX004,3:01NX005,1:01NX006 | 01NX005,01NX004,01NX006 |
+      | 1:01NX006,2:01NX004,3:01NX005 | 01NX005,01NX004,01NX006 |
+      | 3:01NX005,3:01NX006,3:02NX001 | 02NX001,01NX005,01NX006 |
 
 #  Scenario Outline: Encoding a deck with one region and only 3 ofs
 #    Given a deck
