@@ -5,12 +5,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.assertj.core.api.Assertions;
+
 import com.runeterrahelper.cards.Card;
 import io.cucumber.java.en.*;
 
 public class DeckStepDefinitions {
 
   private Deck deck;
+  private String sortedDeck;
 
   @Given("a deck")
   public void aDeck() {
@@ -38,5 +41,15 @@ public class DeckStepDefinitions {
     return cards.stream()
                 .map(Card::getCode)
                 .collect(Collectors.joining(","));
+  }
+
+  @When("the deck is sorted")
+  public void theDeckIsSorted() {
+    sortedDeck = new DeckSorter().sort(deck);
+  }
+
+  @Then("the sorted deck should be {string}")
+  public void theSortedDeckShouldBe(String sortedDeck) {
+    Assertions.assertThat(this.sortedDeck).isEqualTo(sortedDeck);
   }
 }
