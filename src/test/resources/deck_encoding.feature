@@ -35,6 +35,7 @@ Feature: Deck encoding
       | 3:01NX005,3:01NX006,3:02NX001           | 02NX001,01NX005,01NX006         |
       | 3:01NX005,3:01NX006,3:02NX001,3:03NX001 | 02NX001,03NX001,01NX005,01NX006 |
       | 3:01NX005,3:01DE006,3:02NX001,3:03NX001 | 01DE006,01NX005,02NX001,03NX001 |
+      | 3:01NX006,3:01NX003,3:01NX005           | 01NX003,01NX005,01NX006         |
 
 #  Scenario Outline: Encoding a deck with one region and only 3 ofs
 #    Given a deck
