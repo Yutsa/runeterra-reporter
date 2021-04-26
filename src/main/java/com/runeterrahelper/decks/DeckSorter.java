@@ -17,8 +17,13 @@ public class DeckSorter {
   }
 
   private String sortCardsGroupedByCopies(final List<Card> cards) {
-    return cards.stream()
-                .map(Card::getCode)
-                .collect(Collectors.joining(","));
+    Map<ReleaseSet, List<Card>> cardGroup = new HashMap<>();
+    for (final Card card : cards) {
+      cardGroup.computeIfAbsent(card.getReleaseSet(), k -> new ArrayList<>()).add(card);
+    }
+    return cardGroup.values().stream()
+                    .sorted(Comparator.comparingInt(List::size))
+                    .flatMap(cardsInGroup -> cardsInGroup.stream().map(Card::getCode))
+                    .collect(Collectors.joining(","));
   }
 }
