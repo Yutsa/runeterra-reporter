@@ -19,7 +19,7 @@ Feature: Deck encoding
   The first group is the one with 3 copies, then 2 copies and 1 copies.
   In those groups the cards are then grouped by set/region pair.
   The set/region groups are sorted by increasing length.
-  If two set/region groups have the same length, they are ordered by their set (01, 02, 03, ...)
+  If two set/region groups have the same length, they are ordered by alphanumerically by their set/region pair.
   Cards in each group are sorted alphanumerically.
     Given a deck
     And the deck contains the following "<cards>"
@@ -34,6 +34,7 @@ Feature: Deck encoding
       | 1:01NX006,2:01NX004,3:01NX005           | 01NX005,01NX004,01NX006         |
       | 3:01NX005,3:01NX006,3:02NX001           | 02NX001,01NX005,01NX006         |
       | 3:01NX005,3:01NX006,3:02NX001,3:03NX001 | 02NX001,03NX001,01NX005,01NX006 |
+      | 3:01NX005,3:01DE006,3:02NX001,3:03NX001 | 01DE006,01NX005,02NX001,03NX001 |
 
 #  Scenario Outline: Encoding a deck with one region and only 3 ofs
 #    Given a deck
