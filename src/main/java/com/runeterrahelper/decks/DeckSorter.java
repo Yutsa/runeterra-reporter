@@ -17,13 +17,18 @@ public class DeckSorter {
   }
 
   private String sortCardsGroupedByCopies(final List<Card> cards) {
-    Map<ReleaseSet, List<Card>> cardGroup = new HashMap<>();
+    Map<ReleaseSet, List<Card>> setRegionGroup = new HashMap<>();
     for (final Card card : cards) {
-      cardGroup.computeIfAbsent(card.getReleaseSet(), k -> new ArrayList<>()).add(card);
+      setRegionGroup.computeIfAbsent(card.getReleaseSet(), k -> new ArrayList<>()).add(card);
     }
-    return cardGroup.values().stream()
-                    .sorted(Comparator.comparingInt(List::size))
+    return setRegionGroup.values().stream()
+                    .sorted(compareSetRegionGroups())
                     .flatMap(cardsInGroup -> cardsInGroup.stream().map(Card::getCode))
                     .collect(Collectors.joining(","));
+  }
+
+  private Comparator<List<Card>> compareSetRegionGroups() {
+    return Comparator.comparing(List<Card>::size)
+                     .thenComparing(cards -> cards.get(0).getCode());
   }
 }
