@@ -26,16 +26,17 @@ Feature: Deck encoding
     When the deck is sorted
     Then the sorted deck should be "<sortedDeck>"
     Examples:
-      | cards                                   | sortedDeck                      |
-      | 3:01NX004                               | 01NX004                         |
-      | 3:01NX004,3:01NX005                     | 01NX004,01NX005                 |
-      | 2:01NX004,3:01NX005                     | 01NX005,01NX004                 |
-      | 2:01NX004,3:01NX005,1:01NX006           | 01NX005,01NX004,01NX006         |
-      | 1:01NX006,2:01NX004,3:01NX005           | 01NX005,01NX004,01NX006         |
-      | 3:01NX005,3:01NX006,3:02NX001           | 02NX001,01NX005,01NX006         |
-      | 3:01NX005,3:01NX006,3:02NX001,3:03NX001 | 02NX001,03NX001,01NX005,01NX006 |
-      | 3:01NX005,3:01DE006,3:02NX001,3:03NX001 | 01DE006,01NX005,02NX001,03NX001 |
-      | 3:01NX006,3:01NX003,3:01NX005           | 01NX003,01NX005,01NX006         |
+      | cards                                                       | sortedDeck                                      |
+      | 3:01NX004                                                   | 01NX004                                         |
+      | 3:01NX004,3:01NX005                                         | 01NX004,01NX005                                 |
+      | 2:01NX004,3:01NX005                                         | 01NX005,01NX004                                 |
+      | 2:01NX004,3:01NX005,1:01NX006                               | 01NX005,01NX004,01NX006                         |
+      | 1:01NX006,2:01NX004,3:01NX005                               | 01NX005,01NX004,01NX006                         |
+      | 3:01NX005,3:01NX006,3:02NX001                               | 02NX001,01NX005,01NX006                         |
+      | 3:01NX005,3:01NX006,3:02NX001,3:03NX001                     | 02NX001,03NX001,01NX005,01NX006                 |
+      | 3:01NX005,3:01DE006,3:02NX001,3:03NX001                     | 01DE006,01NX005,02NX001,03NX001                 |
+      | 3:01NX006,3:01NX003,3:01NX005                               | 01NX003,01NX005,01NX006                         |
+      | 3:01NX005,3:01DE006,3:01NX001,3:03NX001,2:01DE001,1:01DE002 | 01DE006,03NX001,01NX001,01NX005,01DE001,01DE002 |
 
 #  Scenario Outline: Encoding a deck with one region and only 3 ofs
 #    Given a deck

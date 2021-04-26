@@ -13,7 +13,7 @@ import io.cucumber.java.en.*;
 public class DeckStepDefinitions {
 
   private Deck deck;
-  private String sortedDeck;
+  private SortedDeck sortedDeck;
 
   @Given("a deck")
   public void aDeck() {
@@ -50,6 +50,6 @@ public class DeckStepDefinitions {
 
   @Then("the sorted deck should be {string}")
   public void theSortedDeckShouldBe(String sortedDeck) {
-    Assertions.assertThat(this.sortedDeck).isEqualTo(sortedDeck);
+    Assertions.assertThat(this.sortedDeck.toString()).hasToString(sortedDeck);
   }
 }
