@@ -23,7 +23,7 @@ Feature: VarInt encoder/decoder
       | 785     | 1456       |
       | 999     | 2317       |
 
-  Scenario Outline: The VarInt translators can get the next encoded value from the VarInt
+  Scenario Outline: The VarInt translators can get the next encoded value from the VarInt with one integer in it
     Given the integer <integer>
     When the integer is added to the varint
     And the next value is popped from the varint
@@ -46,3 +46,27 @@ Feature: VarInt encoder/decoder
       | 654     |
       | 785     |
       | 999     |
+
+  Scenario Outline: The VarInt translators can get the next two encoded values in a VarInt with 2 values in it
+    Given the integers <integer> and <integer2>
+    When the two integers are added to the varint
+    And the two values are popped
+    Then the popped integer are the one that were encoded
+    Examples:
+      | integer | integer2 |
+      | 1       | 2        |
+      | 127     | 3        |
+      | 128     | 4        |
+      | 129     | 254      |
+      | 130     | 211      |
+      | 254     | 122      |
+      | 255     | 25       |
+      | 256     | 29       |
+      | 257     | 122      |
+      | 383     | 296      |
+      | 384     | 95       |
+      | 511     | 1        |
+      | 512     | 9865     |
+      | 654     | 1354     |
+      | 785     | 2974     |
+      | 999     | 15683    |
