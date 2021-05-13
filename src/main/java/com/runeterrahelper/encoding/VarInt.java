@@ -11,21 +11,18 @@ public class VarInt {
     private final List<Integer> varint = new ArrayList<>();
 
     public void add(int number) {
-        List<Integer> res;
         List<Integer> result = new ArrayList<>();
         if (number < 128) {
             result.add(number);
-            res = result;
         } else {
             int count = 1;
             for (; number > 255; number -= 128) {
                 count++;
             }
             result.addAll(List.of(number, count));
-            res = result;
         }
 
-        varint.addAll(res);
+        varint.addAll(result);
     }
     
     public int pop() {
