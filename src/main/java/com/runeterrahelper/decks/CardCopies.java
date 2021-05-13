@@ -4,7 +4,7 @@ import java.util.Objects;
 
 import com.runeterrahelper.cards.Card;
 
-class CardCopies {
+public class CardCopies {
 
   private final int numberOfCopies;
   private final Card card;

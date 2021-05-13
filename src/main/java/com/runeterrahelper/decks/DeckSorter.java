@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.runeterrahelper.cards.Card;
 
-class DeckSorter {
+public class DeckSorter {
 
   public SortedDeck sort(final Deck deck) {
     CardsGroupedByCopies threeOfs = sortCardsGroupedByCopies(deck.threeOfs());

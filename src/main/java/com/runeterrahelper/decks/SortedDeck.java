@@ -2,7 +2,7 @@ package com.runeterrahelper.decks;
 
 import java.util.stream.*;
 
-class SortedDeck {
+public class SortedDeck {
 
   private final CardsGroupedByCopies threeOfs;
   private final CardsGroupedByCopies twoOfs;
