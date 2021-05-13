@@ -13,13 +13,20 @@ class DeckVarintEncoder {
 
     public VarInt encode(Deck deck) {
         SortedDeck sortedDeck = deckSorter.sort(deck);
-        CardsGroupedByCopies threeOfs = sortedDeck.getThreeOfs();
-        varInt.add(threeOfs.numberOfSetRegionCombination());
-        threeOfs.retrieveGroups().forEach(this::encodeCardGroup);
+        encodeXOfs(sortedDeck.getThreeOfs());
+        encodeXOfs(sortedDeck.getTwoOfs());
+        encodeXOfs(sortedDeck.getOneOfs());
         return varInt;
     }
 
-    private void encodeCardGroup(SetRegionCardGroup cardGroup) {
+    private void encodeXOfs(CardsGroupedByCopies cards) {
+        if (!cards.getCards().isEmpty()) {
+            varInt.add(cards.numberOfSetRegionCombination());
+            cards.retrieveGroups().forEach(this::encodeSetRegionGroup);
+        }
+    }
+
+    private void encodeSetRegionGroup(SetRegionCardGroup cardGroup) {
         varInt.add(cardGroup.numberOfCards());
         varInt.add(cardGroup.getReleaseSet().getId());
         varInt.add(cardGroup.getRegion().getId());
