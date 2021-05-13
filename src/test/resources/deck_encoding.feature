@@ -58,4 +58,18 @@ Feature: Deck encoding
       | 3:01DE001,2:01DE002,1:01DE003           | 1,1,1,0,1,1,1,1,0,2,1,1,1,0,3 |
       | 3:01DE001,2:01MT002                     | 1,1,1,0,1,1,1,1,9,2           |
       | 3:01DE001,3:01DE002,2:01MT001,2:02MT002 | 1,2,1,0,1,2,2,1,1,9,1,1,2,9,2 |
-  
+
+  Scenario Outline: Encoding a deck to a deck code.
+    Given a deck
+    And the deck contains the following "<cards>"
+    When the deck code is computed
+    Then the deck code is "<deckCode>"
+    Examples:
+      | cards                                                                                                                                                                     | deckCode                                                      |
+      | 3:01SI015,3:01SI044,3:01SI048,3:01SI054,3:01FR003,3:01FR012,3:01FR020,3:01FR024,3:01FR033,3:01FR036,3:01FR039,3:01FR052,2:01SI005,2:01FR004                               | CMBAIAIFB4WDANQIAEAQGDAUDAQSIJZUAIAQCAIEAEAQKBIA              |
+      | 3:01FR004,3:01FR039,3:01DE002,3:01DE023,3:01DE040,3:01DE044,3:01DE045,3:01DE053,2:01FR046,2:01DE007,2:01DE009,2:01DE015,2:01DE029,2:01DE032,2:01DE043,1:01FR005,1:01FR006 | CMBAEAIBAQTQMAIAAILSQLBNGUBACAIBFYDACAAHBEHR2IBLAEBACAIFAY    |
+      | 3:01DE022,3:01DE023,3:01SI001,3:01SI011,3:01SI015,3:01SI030,3:01SI035,3:01SI043,3:01SI044,3:01SI054,2:01SI049,2:01DE002,2:01DE015,2:01DE033,1:01SI045,1:01DE007           | CMBAEAIACYLQQAIFAEFQ6HRDFMWDMAQBAECTCAYBAABA6IICAEAQABYBAECS2 |
+
+
+
+    

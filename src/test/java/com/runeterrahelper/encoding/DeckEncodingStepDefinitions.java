@@ -24,6 +24,7 @@ public class DeckEncodingStepDefinitions {
     private Deck deck;
     private SortedDeck sortedDeck;
     private VarInt varInt;
+    private String deckCode;
 
     @Given("a deck")
     public void aDeck() {
@@ -74,5 +75,15 @@ public class DeckEncodingStepDefinitions {
                 .map(Objects::toString)
                 .collect(Collectors.joining(","));
         assertThat(result).isEqualTo(expectedVarint);
+    }
+
+    @When("the deck code is computed")
+    public void theDeckCodeIsComputed() {
+        deckCode = new DeckEncoder().encode(deck);
+    }
+
+    @Then("the deck code is {string}")
+    public void theDeckCodeIs(String expectedDeckCode) {
+        assertThat(deckCode).isEqualTo(expectedDeckCode);
     }
 }
