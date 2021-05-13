@@ -2,7 +2,7 @@ package com.runeterrahelper.encoding;
 
 import com.runeterrahelper.decks.*;
 
-public class DeckVarintEncoder {
+class DeckVarintEncoder {
 
     private final DeckSorter deckSorter;
     private final VarInt varInt = new VarInt();

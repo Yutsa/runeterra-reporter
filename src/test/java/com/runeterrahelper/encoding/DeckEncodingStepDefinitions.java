@@ -1,4 +1,4 @@
-package com.runeterrahelper.decks;
+package com.runeterrahelper.encoding;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -9,12 +9,17 @@ import java.util.stream.Collectors;
 import org.assertj.core.api.Assertions;
 
 import com.runeterrahelper.cards.Card;
+import com.runeterrahelper.decks.CardCopies;
+import com.runeterrahelper.decks.CardCopiesMarshaller;
+import com.runeterrahelper.decks.Deck;
+import com.runeterrahelper.encoding.DeckSorter;
 import com.runeterrahelper.encoding.DeckVarintEncoder;
+import com.runeterrahelper.encoding.SortedDeck;
 import com.runeterrahelper.encoding.VarInt;
 
 import io.cucumber.java.en.*;
 
-public class DeckStepDefinitions {
+public class DeckEncodingStepDefinitions {
 
     private Deck deck;
     private SortedDeck sortedDeck;

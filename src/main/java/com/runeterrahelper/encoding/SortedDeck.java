@@ -1,8 +1,8 @@
-package com.runeterrahelper.decks;
+package com.runeterrahelper.encoding;
 
 import java.util.stream.*;
 
-public class SortedDeck {
+class SortedDeck {
 
   private final CardsGroupedByCopies threeOfs;
   private final CardsGroupedByCopies twoOfs;

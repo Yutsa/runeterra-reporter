@@ -3,7 +3,7 @@ package com.runeterrahelper.encoding;
 import java.util.ArrayList;
 import java.util.List;
 
-public class VarInt {
+class VarInt {
 
     private static final int allButMSB = 0x7f;
     private static final int justMSB = 0x80;

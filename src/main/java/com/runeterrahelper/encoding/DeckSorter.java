@@ -1,10 +1,11 @@
-package com.runeterrahelper.decks;
+package com.runeterrahelper.encoding;
 
 import java.util.List;
 
 import com.runeterrahelper.cards.Card;
+import com.runeterrahelper.decks.Deck;
 
-public class DeckSorter {
+class DeckSorter {
 
   public SortedDeck sort(final Deck deck) {
     CardsGroupedByCopies threeOfs = sortCardsGroupedByCopies(deck.threeOfs());

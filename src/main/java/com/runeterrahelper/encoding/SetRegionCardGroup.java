@@ -1,4 +1,4 @@
-package com.runeterrahelper.decks;
+package com.runeterrahelper.encoding;
 
 import com.runeterrahelper.cards.Card;
 import com.runeterrahelper.cards.Region;
@@ -6,7 +6,7 @@ import com.runeterrahelper.cards.ReleaseSet;
 
 import java.util.List;
 
-public class SetRegionCardGroup {
+class SetRegionCardGroup {
     private final ReleaseSet releaseSet;
     private final Region region;
     private final List<Card> cards;

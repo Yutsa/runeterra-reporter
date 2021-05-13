@@ -1,11 +1,13 @@
-package com.runeterrahelper.steps;
+package com.runeterrahelper.cards;
+
+import org.assertj.core.api.SoftAssertions;
+
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 
 import static org.assertj.core.api.Assertions.assertThat;
-
-import org.assertj.core.api.*;
-
-import com.runeterrahelper.cards.*;
-import io.cucumber.java.en.*;
 
 public class CardStepDefinitions {
 

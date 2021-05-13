@@ -1,11 +1,11 @@
-package com.runeterrahelper.decks;
+package com.runeterrahelper.encoding;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
 import com.runeterrahelper.cards.*;
 
-public class CardsGroupedByCopies {
+class CardsGroupedByCopies {
 
     private final Map<SetRegionPair, List<Card>> setRegionGroup = new HashMap<>();
 
