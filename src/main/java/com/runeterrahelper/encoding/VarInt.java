@@ -1,15 +1,25 @@
 package com.runeterrahelper.encoding;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class VarInt {
 
     private static final int allButMSB = 0x7f;
     private static final int justMSB = 0x80;
+    
+    private final List<Integer> varint = new ArrayList<>();
 
-    private VarInt() {
+    public void add(int number) {
+        varint.addAll(VarInt.get(number));
+    }
+    
+    public int pop() {
+        return VarInt.pop(varint);
+    }
+    
+    public List<Integer> getValues() {
+        return varint;
     }
 
     public static int pop(List<Integer> bytes) {
