@@ -29,10 +29,8 @@ class DeckVarintEncoder {
     }
 
     private void encodeXOfs(CardsGroupedByCopies cards) {
-        if (!cards.getCards().isEmpty()) {
-            varInt.add(cards.numberOfSetRegionCombination());
-            cards.retrieveGroups().forEach(this::encodeSetRegionGroup);
-        }
+        varInt.add(cards.numberOfSetRegionCombination());
+        cards.retrieveGroups().forEach(this::encodeSetRegionGroup);
     }
 
     private void encodeSetRegionGroup(SetRegionCardGroup cardGroup) {
