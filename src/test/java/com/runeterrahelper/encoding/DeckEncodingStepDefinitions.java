@@ -2,6 +2,7 @@ package com.runeterrahelper.encoding;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -48,12 +49,6 @@ public class DeckEncodingStepDefinitions {
         }
     }
 
-    private String cardListToString(List<Card> cards) {
-        return cards.stream()
-                .map(Card::getCode)
-                .collect(Collectors.joining(","));
-    }
-
     @When("the deck is sorted")
     public void theDeckIsSorted() {
         sortedDeck = new DeckSorter().sort(deck);
@@ -82,5 +77,30 @@ public class DeckEncodingStepDefinitions {
     @Then("the deck code is {string}")
     public void theDeckCodeIs(String expectedDeckCode) {
         assertThat(deckCode).isEqualTo(expectedDeckCode);
+    }
+
+    @Given("a deck code {string}")
+    public void a_deck_code(String deckCode) {
+        this.deckCode = deckCode;
+    }
+    @When("the code is decoded")
+    public void the_code_is_decoded() {
+        deck = new DeckEncoder().decode(deckCode);
+    }
+    @Then("the resulting deck should contain the following {string}")
+    public void the_resulting_deck_should_contain_the_following(String cards) {
+        Arrays.stream(cards.split(","))
+                .forEach(cardCode -> checkIfCardIsInDeck(cardCode, deck));
+    }
+
+    private void checkIfCardIsInDeck(String cardCode, Deck deck) {
+        CardCopies cardCopy = CardCopies.fromString(cardCode);
+        assertThat(deck.getCards()).contains(cardCopy);
+    }
+
+    private String cardListToString(List<Card> cards) {
+        return cards.stream()
+                .map(Card::getCode)
+                .collect(Collectors.joining(","));
     }
 }
