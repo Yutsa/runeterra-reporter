@@ -2,12 +2,14 @@ package com.runeterrahelper.encoding;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 class VarInt {
 
     private static final int allButMSB = 0x7f;
     private static final int justMSB = 0x80;
-    
+
     private final List<Integer> varint = new ArrayList<>();
 
     public void add(int number) {
@@ -24,7 +26,7 @@ class VarInt {
 
         varint.addAll(result);
     }
-    
+
     public int pop() {
         int result = 0;
         int shift = 0;
@@ -45,8 +47,15 @@ class VarInt {
 
         throw new IllegalArgumentException("Byte array did not contain valid VarInts");
     }
-    
+
     public List<Integer> getValues() {
         return varint;
+    }
+
+    @Override
+    public String toString() {
+        return varint.stream()
+                .map(Objects::toString)
+                .collect(Collectors.joining(","));
     }
 }

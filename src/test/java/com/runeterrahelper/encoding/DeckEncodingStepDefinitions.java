@@ -71,10 +71,7 @@ public class DeckEncodingStepDefinitions {
 
     @Then("the varint should contain the following {string}")
     public void the_varint_should_contain_the_following(String expectedVarint) {
-        String result = varInt.getValues().stream()
-                .map(Objects::toString)
-                .collect(Collectors.joining(","));
-        assertThat(result).isEqualTo(expectedVarint);
+        assertThat(varInt.toString()).isEqualTo(expectedVarint);
     }
 
     @When("the deck code is computed")

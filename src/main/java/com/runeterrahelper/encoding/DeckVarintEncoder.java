@@ -5,6 +5,8 @@ import com.runeterrahelper.decks.*;
 class DeckVarintEncoder {
 
     private final DeckSorter deckSorter;
+    private final int format = 1;
+    private final int version = 3;
     private final VarInt varInt = new VarInt();
 
     public DeckVarintEncoder(DeckSorter deckSorter) {
@@ -12,11 +14,18 @@ class DeckVarintEncoder {
     }
 
     public VarInt encode(Deck deck) {
+        encodeFormatAndVersion();
         SortedDeck sortedDeck = deckSorter.sort(deck);
         encodeXOfs(sortedDeck.getThreeOfs());
         encodeXOfs(sortedDeck.getTwoOfs());
         encodeXOfs(sortedDeck.getOneOfs());
         return varInt;
+    }
+
+    private void encodeFormatAndVersion() {
+        // The first 4 bits are the format and the last 4 are the version.
+        int versionAndFormat = format << 4 | version;
+        varInt.add(versionAndFormat);
     }
 
     private void encodeXOfs(CardsGroupedByCopies cards) {

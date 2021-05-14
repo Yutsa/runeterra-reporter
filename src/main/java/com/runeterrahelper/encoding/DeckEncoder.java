@@ -10,7 +10,6 @@ public class DeckEncoder {
     public String encode(Deck deck) {
         VarInt varInt = new DeckVarintEncoder(new DeckSorter()).encode(deck);
         List<Integer> values = varInt.getValues();
-        values.add(0, 19);
         byte[] output = new byte[values.size()];
         for (int i = 0; i < values.size(); i++)
         {
