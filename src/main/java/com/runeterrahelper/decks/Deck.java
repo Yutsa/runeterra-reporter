@@ -1,16 +1,22 @@
 package com.runeterrahelper.decks;
 
-import java.util.*;
-import java.util.stream.Collectors;
-
 import com.runeterrahelper.cards.Card;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class Deck {
 
   private final List<CardCopies> cards = new ArrayList<>();
 
-  public void addCardCopies(final List<CardCopies> cardCopies) {
+  public void addCard(final List<CardCopies> cardCopies) {
     cards.addAll(cardCopies);
+  }
+  
+  public void addCard(final CardCopies... cardCopies) {
+    cards.addAll(Arrays.asList(cardCopies));
   }
 
   public List<CardCopies> getCards() {

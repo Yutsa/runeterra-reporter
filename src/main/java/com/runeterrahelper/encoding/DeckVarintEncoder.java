@@ -1,6 +1,13 @@
 package com.runeterrahelper.encoding;
 
-import com.runeterrahelper.decks.*;
+import com.runeterrahelper.cards.Card;
+import com.runeterrahelper.cards.Region;
+import com.runeterrahelper.decks.CardCopies;
+import com.runeterrahelper.decks.Deck;
+
+import org.apache.commons.lang.StringUtils;
+
+import java.util.ArrayList;
 
 class DeckVarintEncoder {
 
@@ -38,5 +45,40 @@ class DeckVarintEncoder {
         varInt.add(cardGroup.getReleaseSet().getId());
         varInt.add(cardGroup.getRegion().getId());
         cardGroup.getCards().forEach(card -> varInt.add(card.getCardNumber()));
+    }
+
+    public Deck decode(ArrayList<Integer> bytes) {
+        Deck deck = new Deck();
+        VarInt varInt = new VarInt(bytes);
+        int formatAndVersion = varInt.pop();
+        decodeXOfs(varInt, deck, 3);
+        decodeXOfs(varInt, deck, 2);
+        decodeXOfs(varInt, deck, 1);
+        return deck;
+    }
+
+    private void decodeXOfs(VarInt varInt, Deck deck, int XOfs) {
+        int numberOfSetRegionGroups = varInt.pop();
+        for (int i = 0; i < numberOfSetRegionGroups; i++) {
+            int numberOfCards = varInt.pop();
+            String releaseSetId = formatReleaseSet(varInt.pop());
+            String regionId = formatRegionId(varInt.pop());
+            for (int j = 0; j < numberOfCards; j++) {
+                String cardCode = formatCardCode(varInt.pop());
+                deck.addCard(new CardCopies(XOfs, Card.fromCode(releaseSetId + regionId + cardCode)));
+            }
+        }
+    }
+
+    private String formatCardCode(int cardCode) {
+        return StringUtils.leftPad(String.valueOf(cardCode), 3, "0");
+    }
+
+    private String formatRegionId(int regionId) {
+        return Region.fromId(regionId).getRegionCode();
+    }
+
+    private String formatReleaseSet(int releaseSetId) {
+        return StringUtils.leftPad(String.valueOf(releaseSetId), 2, "0");
     }
 }

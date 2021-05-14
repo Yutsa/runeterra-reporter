@@ -44,20 +44,20 @@ Feature: Deck encoding
     When the deck is encoded to a varint
     Then the varint should contain the following "<values>"
     Examples:
-      | cards                                   | values                           |
-      | 3:01DE001                               | 19,1,1,1,0,1                     |
-      | 3:01DE001,3:01DE002                     | 19,1,2,1,0,1,2                   |
-      | 3:01DE001,3:01DE002,3:01NX009           | 19,2,1,1,3,9,2,1,0,1,2           |
-      | 2:01DE001                               | 19,1,1,1,0,1                     |
-      | 2:01DE001,2:01DE002                     | 19,1,2,1,0,1,2                   |
-      | 2:01DE001,2:01DE002,2:01NX009           | 19,2,1,1,3,9,2,1,0,1,2           |
-      | 1:01DE001                               | 19,1,1,1,0,1                     |
-      | 1:01DE001,1:01DE002                     | 19,1,2,1,0,1,2                   |
-      | 1:01DE001,1:01DE002,1:01NX009           | 19,2,1,1,3,9,2,1,0,1,2           |
-      | 3:01DE001,2:01DE002                     | 19,1,1,1,0,1,1,1,1,0,2           |
-      | 3:01DE001,2:01DE002,1:01DE003           | 19,1,1,1,0,1,1,1,1,0,2,1,1,1,0,3 |
-      | 3:01DE001,2:01MT002                     | 19,1,1,1,0,1,1,1,1,9,2           |
-      | 3:01DE001,3:01DE002,2:01MT001,2:02MT002 | 19,1,2,1,0,1,2,2,1,1,9,1,1,2,9,2 |
+      | cards                                   | values                             |
+      | 3:01DE001                               | 19,1,1,1,0,1,0,0                   |
+      | 3:01DE001,3:01DE002                     | 19,1,2,1,0,1,2,0,0                 |
+      | 3:01DE001,3:01DE002,3:01NX009           | 19,2,1,1,3,9,2,1,0,1,2,0,0         |
+      | 2:01DE001                               | 19,0,1,1,1,0,1,0                   |
+      | 2:01DE001,2:01DE002                     | 19,0,1,2,1,0,1,2,0                 |
+      | 2:01DE001,2:01DE002,2:01NX009           | 19,0,2,1,1,3,9,2,1,0,1,2,0         |
+      | 1:01DE001                               | 19,0,0,1,1,1,0,1                   |
+      | 1:01DE001,1:01DE002                     | 19,0,0,1,2,1,0,1,2                 |
+      | 1:01DE001,1:01DE002,1:01NX009           | 19,0,0,2,1,1,3,9,2,1,0,1,2         |
+      | 3:01DE001,2:01DE002                     | 19,1,1,1,0,1,1,1,1,0,2,0           |
+      | 3:01DE001,2:01DE002,1:01DE003           | 19,1,1,1,0,1,1,1,1,0,2,1,1,1,0,3   |
+      | 3:01DE001,2:01MT002                     | 19,1,1,1,0,1,1,1,1,9,2,0           |
+      | 3:01DE001,3:01DE002,2:01MT001,2:02MT002 | 19,1,2,1,0,1,2,2,1,1,9,1,1,2,9,2,0 |
 
   Scenario Outline: Encoding a deck to a deck code.
     Given a deck
@@ -77,9 +77,23 @@ Feature: Deck encoding
     When the code is decoded
     Then the resulting deck should contain the following "<cards>"
     Examples:
-      | cards                                                                                                                                       | deckCode                                         |
-      | 3:01SI015,3:01SI044,3:01SI048,3:01SI054,3:01FR003,3:01FR012,3:01FR020,3:01FR024,3:01FR033,3:01FR036,3:01FR039,3:01FR052,2:01SI005,2:01FR004 | CMBAIAIFB4WDANQIAEAQGDAUDAQSIJZUAIAQCAIEAEAQKBIA |
-#      | 3:01FR004,3:01FR039,3:01DE002,3:01DE023,3:01DE040,3:01DE044,3:01DE045,3:01DE053,2:01FR046,2:01DE007,2:01DE009,2:01DE015,2:01DE029,2:01DE032,2:01DE043,1:01FR005,1:01FR006           | CMBAEAIBAQTQMAIAAILSQLBNGUBACAIBFYDACAAHBEHR2IBLAEBACAIFAY       |
-#      | 3:01DE022,3:01DE023,3:01SI001,3:01SI011,3:01SI015,3:01SI030,3:01SI035,3:01SI043,3:01SI044,3:01SI054,2:01SI049,2:01DE002,2:01DE015,2:01DE033,1:01SI045,1:01DE007                     | CMBAEAIACYLQQAIFAEFQ6HRDFMWDMAQBAECTCAYBAABA6IICAEAQABYBAECS2    |
-#      | 3:01DE009,3:01DE032,3:01DE052,3:01DE053,3:01IO010,3:01IO016,3:01IO019,3:01IO032,3:01IO048,2:01IO049,2:01DE002,2:01DE007,2:01DE042,1:01IO043,1:01IO045,1:01DE006,1:01DE029,1:01DE045 | CMBAIAIABEQDINIFAEBAUEATEAYAEAIBAIYQGAIAAIDSUAQCAEBCWLIDAEAAMHJN |
-#      | 3:01NX012,3:01NX017,3:01NX038,3:01NX042,3:01NX046,3:01NX049,3:01DE002,3:01DE009,3:01DE021,3:01DE029,3:01DE051,3:01DE053,2:01DE019,2:01NX004                                         | CMBAMAIAAIERKHJTGUDACAYMCETCULRRAIAQCAATAEAQGBAA                 |
+      | cards                                                                                                                                                                               | deckCode                                                         |
+      | 3:01SI015,3:01SI044,3:01SI048,3:01SI054,3:01FR003,3:01FR012,3:01FR020,3:01FR024,3:01FR033,3:01FR036,3:01FR039,3:01FR052,2:01SI005,2:01FR004                                         | CMBAIAIFB4WDANQIAEAQGDAUDAQSIJZUAIAQCAIEAEAQKBIA                 |
+      | 3:01FR004,3:01FR039,3:01DE002,3:01DE023,3:01DE040,3:01DE044,3:01DE045,3:01DE053,2:01FR046,2:01DE007,2:01DE009,2:01DE015,2:01DE029,2:01DE032,2:01DE043,1:01FR005,1:01FR006           | CMBAEAIBAQTQMAIAAILSQLBNGUBACAIBFYDACAAHBEHR2IBLAEBACAIFAY       |
+      | 3:01DE022,3:01DE023,3:01SI001,3:01SI011,3:01SI015,3:01SI030,3:01SI035,3:01SI043,3:01SI044,3:01SI054,2:01SI049,2:01DE002,2:01DE015,2:01DE033,1:01SI045,1:01DE007                     | CMBAEAIACYLQQAIFAEFQ6HRDFMWDMAQBAECTCAYBAABA6IICAEAQABYBAECS2    |
+      | 3:01DE009,3:01DE032,3:01DE052,3:01DE053,3:01IO010,3:01IO016,3:01IO019,3:01IO032,3:01IO048,2:01IO049,2:01DE002,2:01DE007,2:01DE042,1:01IO043,1:01IO045,1:01DE006,1:01DE029,1:01DE045 | CMBAIAIABEQDINIFAEBAUEATEAYAEAIBAIYQGAIAAIDSUAQCAEBCWLIDAEAAMHJN |
+      | 3:01NX012,3:01NX017,3:01NX038,3:01NX042,3:01NX046,3:01NX049,3:01DE002,3:01DE009,3:01DE021,3:01DE029,3:01DE051,3:01DE053,2:01DE019,2:01NX004                                         | CMBAMAIAAIERKHJTGUDACAYMCETCULRRAIAQCAATAEAQGBAA                 |
+
+  Scenario Outline: Decoding and rencoding a deck should result in the same deck code
+    Given a deck code "<deckCode>"
+    When the code is decoded
+    And the deck code is computed
+    Then the deck code should be "<deckCode>"
+    Examples:
+      | deckCode                                                         |
+      | CMBAIAIFB4WDANQIAEAQGDAUDAQSIJZUAIAQCAIEAEAQKBIA                 |
+      | CMBAEAIBAQTQMAIAAILSQLBNGUBACAIBFYDACAAHBEHR2IBLAEBACAIFAY       |
+      | CMBAEAIACYLQQAIFAEFQ6HRDFMWDMAQBAECTCAYBAABA6IICAEAQABYBAECS2    |
+      | CMBAIAIABEQDINIFAEBAUEATEAYAEAIBAIYQGAIAAIDSUAQCAEBCWLIDAEAAMHJN |
+      | CMBAMAIAAIERKHJTGUDACAYMCETCULRRAIAQCAATAEAQGBAA                 |
+    

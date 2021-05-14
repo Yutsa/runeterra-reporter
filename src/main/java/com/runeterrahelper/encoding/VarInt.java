@@ -10,7 +10,15 @@ class VarInt {
     private static final int allButMSB = 0x7f;
     private static final int justMSB = 0x80;
 
-    private final List<Integer> varint = new ArrayList<>();
+    private final List<Integer> varint;
+
+    public VarInt() {
+        varint = new ArrayList<>();
+    }
+
+    public VarInt(List<Integer> varint) {
+        this.varint = varint;
+    }
 
     public void add(int number) {
         List<Integer> result = new ArrayList<>();

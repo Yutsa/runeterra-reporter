@@ -28,6 +28,13 @@ public enum Region {
                 .orElseThrow();
     }
 
+    public static Region fromId(int id) {
+        return Arrays.stream(values())
+                .filter(region -> region.getId() == id)
+                .findFirst()
+                .orElseThrow();
+    }
+
     public String getRegionCode() {
         return regionCode;
     }

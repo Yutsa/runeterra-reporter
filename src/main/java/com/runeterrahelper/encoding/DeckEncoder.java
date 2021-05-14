@@ -1,16 +1,22 @@
 package com.runeterrahelper.encoding;
 
-import com.runeterrahelper.cards.Card;
-import com.runeterrahelper.decks.CardCopies;
 import com.runeterrahelper.decks.Deck;
 
 import org.apache.commons.codec.binary.Base32;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DeckEncoder {
+
+    private final DeckVarintEncoder deckVarintEncoder;
+
+    public DeckEncoder(DeckVarintEncoder deckVarintEncoder) {
+        this.deckVarintEncoder = deckVarintEncoder;
+    }
+
     public String encode(Deck deck) {
-        VarInt varInt = new DeckVarintEncoder(new DeckSorter()).encode(deck);
+        VarInt varInt = deckVarintEncoder.encode(deck);
         List<Integer> values = varInt.getValues();
         byte[] output = new byte[values.size()];
         for (int i = 0; i < values.size(); i++)
@@ -21,9 +27,11 @@ public class DeckEncoder {
     }
 
     public Deck decode(String deckCode) {
-        CardCopies cardCopies = CardCopies.fromString("3:01SI015");
-        Deck deck = new Deck();
-        deck.addCardCopies(List.of(cardCopies));
-        return deck;
+        ArrayList<Integer> bytes = new ArrayList<>();
+        byte[] decode = new Base32().decode(deckCode);
+        for (byte data : decode) {
+            bytes.add((int) data);
+        }
+        return deckVarintEncoder.decode(bytes);
     }
 }

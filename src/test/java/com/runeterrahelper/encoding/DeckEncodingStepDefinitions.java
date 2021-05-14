@@ -1,24 +1,22 @@
 package com.runeterrahelper.encoding;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
-
-import org.assertj.core.api.Assertions;
-
 import com.runeterrahelper.cards.Card;
 import com.runeterrahelper.decks.CardCopies;
 import com.runeterrahelper.decks.CardCopiesMarshaller;
 import com.runeterrahelper.decks.Deck;
-import com.runeterrahelper.encoding.DeckSorter;
-import com.runeterrahelper.encoding.DeckVarintEncoder;
-import com.runeterrahelper.encoding.SortedDeck;
-import com.runeterrahelper.encoding.VarInt;
 
-import io.cucumber.java.en.*;
+import org.assertj.core.api.Assertions;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class DeckEncodingStepDefinitions {
 
@@ -35,7 +33,7 @@ public class DeckEncodingStepDefinitions {
     @And("the deck contains the following {string}")
     public void theDeckContainsTheFollowing(String cards) {
         List<CardCopies> cardCopies = CardCopiesMarshaller.unmarshall(cards);
-        deck.addCardCopies(cardCopies);
+        deck.addCard(cardCopies);
     }
 
     @Then("the cards in the {int}ofs should be {string}")
@@ -71,7 +69,7 @@ public class DeckEncodingStepDefinitions {
 
     @When("the deck code is computed")
     public void theDeckCodeIsComputed() {
-        deckCode = new DeckEncoder().encode(deck);
+        deckCode = new DeckEncoder(new DeckVarintEncoder(new DeckSorter())).encode(deck);
     }
 
     @Then("the deck code is {string}")
@@ -83,14 +81,21 @@ public class DeckEncodingStepDefinitions {
     public void a_deck_code(String deckCode) {
         this.deckCode = deckCode;
     }
+    
     @When("the code is decoded")
     public void the_code_is_decoded() {
-        deck = new DeckEncoder().decode(deckCode);
+        deck = new DeckEncoder(new DeckVarintEncoder(new DeckSorter())).decode(deckCode);
     }
+    
     @Then("the resulting deck should contain the following {string}")
     public void the_resulting_deck_should_contain_the_following(String cards) {
         Arrays.stream(cards.split(","))
                 .forEach(cardCode -> checkIfCardIsInDeck(cardCode, deck));
+    }
+
+    @Then("the deck code should be {string}")
+    public void the_deck_code_should_be(String expectedDeckCode) {
+        assertThat(deckCode).isEqualTo(expectedDeckCode);
     }
 
     private void checkIfCardIsInDeck(String cardCode, Deck deck) {
