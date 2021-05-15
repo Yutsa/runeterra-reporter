@@ -1,18 +1,19 @@
 package com.runeterrahelper.matches;
 
 import com.runeterrahelper.cards.Region;
+import com.runeterrahelper.encoding.DeckEncoder;
 
 import io.cucumber.java.ParameterType;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-import static com.runeterrahelper.cards.Region.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.SoftAssertions.assertSoftly;
 
 public class MatchHistoryStepDefs {
 
+    private final DeckEncoder deckEncoder = new DeckEncoder();
     private Player player1;
     private String deckCode1;
 
@@ -30,15 +31,13 @@ public class MatchHistoryStepDefs {
     @Given("the first player used the deck with the deck code {string}")
     public void the_first_player_used_the_deck_with_the_deck_code(String deckCode) {
         deckCode1 = deckCode;
-        player1.usesDeck(deckCode);
-        player1.addToRegions(SHADOW_ISLES, FRELJORD);
+        player1.setDeck(deckEncoder.decode(deckCode));
     }
 
     @Given("the second player used the deck with the deck code {string}")
     public void the_second_player_used_the_deck_with_the_deck_code(String deckCode) {
         deckCode2 = deckCode;
-        player2.usesDeck(deckCode);
-        player2.addToRegions(SHADOW_ISLES, DEMACIA);
+        player2.setDeck(deckEncoder.decode(deckCode));
     }
 
     @Given("the first player won")
@@ -54,8 +53,8 @@ public class MatchHistoryStepDefs {
     @Then("it should show both deck codes")
     public void it_should_show_both_deck_codes() {
         assertSoftly(softly -> {
-            softly.assertThat(matchRecap.firstDeckCode()).isEqualTo(deckCode1);
-            softly.assertThat(matchRecap.secondDeckCode()).isEqualTo(deckCode2);
+            softly.assertThat(matchRecap.firstDeckCode()).isEqualTo(deckEncoder.decode(deckCode1));
+            softly.assertThat(matchRecap.secondDeckCode()).isEqualTo(deckEncoder.decode(deckCode2));
         });
     }
 

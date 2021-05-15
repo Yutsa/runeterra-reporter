@@ -1,10 +1,9 @@
 package com.runeterrahelper.decks;
 
 import com.runeterrahelper.cards.Card;
+import com.runeterrahelper.cards.Region;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Deck {
@@ -40,5 +39,26 @@ public class Deck {
                 .filter(cardCopies -> cardCopies.getNumberOfCopies() == copies)
                 .map(CardCopies::getCard)
                 .collect(Collectors.toList());
+  }
+
+  public Set<Region> getRegions() {
+    return cards
+            .stream()
+            .map(CardCopies::getCard)
+            .map(Card::getRegion)
+            .collect(Collectors.toSet());
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    Deck deck = (Deck) o;
+    return cards.equals(deck.cards);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(cards);
   }
 }

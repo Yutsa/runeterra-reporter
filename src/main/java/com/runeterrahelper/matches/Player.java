@@ -1,25 +1,27 @@
 package com.runeterrahelper.matches;
 
 import com.runeterrahelper.cards.Region;
+import com.runeterrahelper.decks.Deck;
 
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.Set;
 
 class Player {
-    private String deck;
+    private Deck deck;
     private boolean won;
-    private final Set<Region> regions = new HashSet<>();
-
-    public void usesDeck(String deckCode) {
-        deck = deckCode;
-    }
 
     public void won() {
         won = true;
     }
 
-    public String getDeck() {
+    public void lost() {
+        won = false;
+    }
+
+    public void setDeck(Deck deck) {
+        this.deck = deck;
+    }
+
+    public Deck getDeck() {
         return deck;
     }
 
@@ -28,10 +30,6 @@ class Player {
     }
 
     public Set<Region> getRegions() {
-        return regions;
-    }
-
-    public void addToRegions(Region... regions) {
-        this.regions.addAll(Arrays.asList(regions));
+        return deck.getRegions();
     }
 }

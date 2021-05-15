@@ -14,6 +14,10 @@ public class DeckEncoder {
     public DeckEncoder(DeckVarintEncoder deckVarintEncoder) {
         this.deckVarintEncoder = deckVarintEncoder;
     }
+    
+    public DeckEncoder() {
+        this(new DeckVarintEncoder(new DeckSorter()));
+    }
 
     public String encode(Deck deck) {
         VarInt varInt = deckVarintEncoder.encode(deck);

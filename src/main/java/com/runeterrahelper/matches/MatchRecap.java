@@ -1,5 +1,7 @@
 package com.runeterrahelper.matches;
 
+import com.runeterrahelper.decks.Deck;
+
 class MatchRecap {
     private final Player player1;
     private final Player player2;
@@ -17,11 +19,11 @@ class MatchRecap {
         return player2;
     }
 
-    public String firstDeckCode() {
+    public Deck firstDeckCode() {
         return player1.getDeck();
     }
 
-    public String secondDeckCode() {
+    public Deck secondDeckCode() {
         return player2.getDeck();
     }
 
