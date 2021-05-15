@@ -1,4 +1,4 @@
-Feature: Deck encoding
+Feature: Encoding a deck to a deck code and decoding a deck code to a deck.
 
   Scenario Outline: A deck is made of a cards in three, two or one copies
     Given a deck
@@ -96,4 +96,3 @@ Feature: Deck encoding
       | CMBAEAIACYLQQAIFAEFQ6HRDFMWDMAQBAECTCAYBAABA6IICAEAQABYBAECS2    |
       | CMBAIAIABEQDINIFAEBAUEATEAYAEAIBAIYQGAIAAIDSUAQCAEBCWLIDAEAAMHJN |
       | CMBAMAIAAIERKHJTGUDACAYMCETCULRRAIAQCAATAEAQGBAA                 |
-    
