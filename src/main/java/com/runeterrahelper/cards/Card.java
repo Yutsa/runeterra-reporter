@@ -1,8 +1,8 @@
 package com.runeterrahelper.cards;
 
-import java.util.Objects;
-
 import org.apache.commons.lang.StringUtils;
+
+import java.util.Objects;
 
 public class Card {
 

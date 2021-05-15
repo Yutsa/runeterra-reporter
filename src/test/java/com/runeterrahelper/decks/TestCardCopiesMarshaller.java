@@ -1,11 +1,11 @@
 package com.runeterrahelper.decks;
 
-import java.util.List;
+import com.runeterrahelper.cards.Card;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import com.runeterrahelper.cards.Card;
+import java.util.List;
 
 public class TestCardCopiesMarshaller {
 

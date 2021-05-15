@@ -1,9 +1,11 @@
 package com.runeterrahelper.encoding;
 
+import com.runeterrahelper.cards.Card;
+import com.runeterrahelper.cards.Region;
+import com.runeterrahelper.cards.ReleaseSet;
+
 import java.util.*;
 import java.util.stream.Collectors;
-
-import com.runeterrahelper.cards.*;
 
 class CardsGroupedByCopies {
 

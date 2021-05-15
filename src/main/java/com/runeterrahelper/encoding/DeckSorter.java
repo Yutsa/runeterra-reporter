@@ -1,9 +1,9 @@
 package com.runeterrahelper.encoding;
 
-import java.util.List;
-
 import com.runeterrahelper.cards.Card;
 import com.runeterrahelper.decks.Deck;
+
+import java.util.List;
 
 class DeckSorter {
 

@@ -1,6 +1,7 @@
 package com.runeterrahelper.encoding;
 
-import java.util.stream.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 class SortedDeck {
 

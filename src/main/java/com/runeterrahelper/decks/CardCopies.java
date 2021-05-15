@@ -1,8 +1,8 @@
 package com.runeterrahelper.decks;
 
-import java.util.Objects;
-
 import com.runeterrahelper.cards.Card;
+
+import java.util.Objects;
 
 public class CardCopies {
 
