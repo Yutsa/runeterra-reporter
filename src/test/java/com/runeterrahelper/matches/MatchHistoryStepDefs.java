@@ -7,6 +7,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
+import static com.runeterrahelper.cards.Region.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.SoftAssertions.assertSoftly;
 
@@ -30,12 +31,14 @@ public class MatchHistoryStepDefs {
     public void the_first_player_used_the_deck_with_the_deck_code(String deckCode) {
         deckCode1 = deckCode;
         player1.usesDeck(deckCode);
+        player1.addToRegions(SHADOW_ISLES, FRELJORD);
     }
 
     @Given("the second player used the deck with the deck code {string}")
     public void the_second_player_used_the_deck_with_the_deck_code(String deckCode) {
         deckCode2 = deckCode;
         player2.usesDeck(deckCode);
+        player2.addToRegions(SHADOW_ISLES, DEMACIA);
     }
 
     @Given("the first player won")
