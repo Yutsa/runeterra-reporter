@@ -2,11 +2,14 @@ package com.runeterrahelper.decks;
 
 import com.runeterrahelper.cards.Card;
 import com.runeterrahelper.cards.Region;
+import com.runeterrahelper.encoding.DeckEncoder;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class Deck {
+
+  private static DeckEncoder deckEncoder = new DeckEncoder();
 
   private final List<CardCopies> cards = new ArrayList<>();
 
@@ -47,6 +50,10 @@ public class Deck {
             .map(CardCopies::getCard)
             .map(Card::getRegion)
             .collect(Collectors.toSet());
+  }
+
+  public static Deck fromCode(String deckCode) {
+    return deckEncoder.decode(deckCode);
   }
 
   @Override
