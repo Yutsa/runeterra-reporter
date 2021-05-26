@@ -1,72 +1,84 @@
 package com.runeterrahelper.meta.processors.model;
 
+import java.util.*;
+import java.util.stream.Collectors;
+
 import com.runeterrahelper.cards.Region;
 import com.runeterrahelper.decks.Deck;
 import com.runeterrahelper.utils.MathUtils;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.stream.Collectors;
-
 public class Archetype {
-    private final String name;
-    private final Set<Region> regions;
-    private double winrate;
-    private int numberOfMatches;
-    private final Set<Deck> decks = new HashSet<>();
 
-    public Archetype(String name, Set<Region> regions, double winrate, int numberOfMatches) {
-        this.name = name;
-        this.regions = regions;
-        this.winrate = winrate;
-        this.numberOfMatches = numberOfMatches;
-    }
+  private final String name;
+  private final Set<Region> regions;
+  private final Set<Deck> decks = new HashSet<>();
+  private double winrate;
+  private int numberOfMatches;
 
-    public Archetype(String name) {
-        this.name = name;
-        regions = new HashSet<>();
-        winrate = 0;
-        numberOfMatches = 0;
-    }
+  public Archetype(String name, Set<Region> regions, double winrate, int numberOfMatches) {
+    this.name = name;
+    this.regions = regions;
+    this.winrate = winrate;
+    this.numberOfMatches = numberOfMatches;
+  }
 
-    public String getName() {
-        return name;
-    }
+  public Archetype(String name) {
+    this.name = name;
+    regions = new HashSet<>();
+    winrate = 0;
+    numberOfMatches = 0;
+  }
 
-    public Set<Region> getRegions() {
-        return regions;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public double getWinrate() {
-        return winrate;
-    }
+  public Set<Region> getRegions() {
+    return regions;
+  }
 
-    public int getNumberOfMatches() {
-        return numberOfMatches;
-    }
+  public double getWinrate() {
+    return winrate;
+  }
 
-    public Set<Deck> getDecks() {
-        return decks;
-    }
+  public int getNumberOfMatches() {
+    return numberOfMatches;
+  }
 
-    public void addToDecks(Deck... decks) {
-        this.decks.addAll(Arrays.asList(decks));
-    }
+  public Set<Deck> getDecks() {
+    return decks;
+  }
 
-    public void addDeckStats(final DeckMetaStat deckMetaStat) {
-        addToDecks(deckMetaStat.getDeck());
-        double currentPonderation = (double) numberOfMatches / (numberOfMatches + deckMetaStat.getNumberOfGamesPlayed());
-        double newDeckPonderation = 1 - currentPonderation;
-        this.winrate = MathUtils.roundToTwoDigits(winrate * currentPonderation + deckMetaStat.getWinrate() * newDeckPonderation);
-        numberOfMatches += deckMetaStat.getNumberOfGamesPlayed();
-    }
+  public void addToDecks(Deck... decks) {
+    this.decks.addAll(Arrays.asList(decks));
+  }
 
-    @Override
-    public String toString() {
-        return name + " [ " + numberOfMatches + " games / "
-          + winrate + "% winrate / "
-          + "decks : "
-          + decks.stream().map(Deck::toDeckCode).collect(Collectors.joining(", "));
-    }
+  public void addDeckStats(final DeckMetaStat deckMetaStat) {
+    addToDecks(deckMetaStat.getDeck());
+    double currentPonderation = (double) numberOfMatches / (numberOfMatches + deckMetaStat.getNumberOfGamesPlayed());
+    double newDeckPonderation = 1 - currentPonderation;
+    this.winrate = MathUtils.roundToTwoDigits(
+      winrate * currentPonderation + deckMetaStat.getWinrate() * newDeckPonderation);
+    numberOfMatches += deckMetaStat.getNumberOfGamesPlayed();
+  }
+
+  @Override
+  public String toString() {
+    return name + " [ " + numberOfMatches + " games / "
+           + winrate + "% winrate / "
+           + "decks : "
+           + decks.stream().map(Deck::toDeckCode).collect(Collectors.joining(", "));
+  }
+
+  public boolean isComptabileWithDeck(final Deck deck) {
+    return decks.stream()
+                .anyMatch(archetypeDeck -> deckAreSimilar(archetypeDeck, deck));
+  }
+
+  private boolean deckAreSimilar(final Deck archetypeDeck, final Deck deck) {
+    int numberOfCardInReference = archetypeDeck.getCards().size();
+    return archetypeDeck.getCards().stream()
+                        .filter(card -> deck.getCards().contains(card))
+                        .count() >= numberOfCardInReference / 2;
+  }
 }

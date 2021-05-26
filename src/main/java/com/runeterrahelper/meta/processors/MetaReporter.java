@@ -8,16 +8,14 @@ import com.runeterrahelper.meta.processors.model.*;
 public class MetaReporter {
 
   private final MetaDataSource metaDataSource;
+  private final ArchetypeGenerator archetypeGenerator = new ArchetypeGenerator();
 
   public MetaReporter(MetaDataSource metaDataSource) {
     this.metaDataSource = metaDataSource;
   }
 
   public MetaReport generateReport() {
-    Set<DeckMetaStat> deckMetaStats = metaDataSource.retrieveDecks();
-    var archetype = new Archetype("foobar");
-
-    deckMetaStats.forEach(archetype::addDeckStats);
-    return new MetaReport(List.of(archetype));
+    return new MetaReport(archetypeGenerator.generateArchetypes(metaDataSource.retrieveDecks()));
   }
+
 }
