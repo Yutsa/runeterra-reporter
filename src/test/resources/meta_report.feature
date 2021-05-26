@@ -25,3 +25,13 @@ Feature: Meta reports
       | CMBQIBAHAMNDGOIBAEBCUBIEAICAKCILB4BQCAICFQAQGAQFAICAOHC5AIAQCAQGAEBQEFA |
       | CMBQEAICAYVAIBAHAMNDGXIFAQBAIBIJBMHQGAIBAIWACAYCAUAQIBZZAEAQGAQU        |
       | CMCACAYCAUBACAQGFICAIAQEAUEQ6BAEA4BRUM25AMAQEAQKAECAECYBAQDTSAIBAMBBI   |
+
+  Scenario: Generating a meta report with two decks from different archetypes
+    Given a datasource
+    And the datasource contains the deck "CMBQIBAHAMNDGOIBAEBCUBIEAICAKCILB4BQCAICFQAQGAQFAICAOHC5AIAQCAQGAEBQEFA" with 120 games played and 58% winrate
+    And the datasource contains the deck "CMBQEBAFAMIAIBAHAINC6ZYFAECQWKBQGE2ACAQBAUMSEAQBAQCQIAQEA45XS" with 200 games played and 55% winrate
+    When the meta report is generated
+    Then it should contain an archetype with 120 games played and 58% winrate with the following decks:
+      | CMBQIBAHAMNDGOIBAEBCUBIEAICAKCILB4BQCAICFQAQGAQFAICAOHC5AIAQCAQGAEBQEFA |
+    And it should contain an archetype with 200 games played and 55% winrate with the following decks:
+      | CMBQEBAFAMIAIBAHAINC6ZYFAECQWKBQGE2ACAQBAUMSEAQBAQCQIAQEA45XS |

@@ -7,6 +7,7 @@ import com.runeterrahelper.utils.MathUtils;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Archetype {
     private final String name;
@@ -59,5 +60,13 @@ public class Archetype {
         double newDeckPonderation = 1 - currentPonderation;
         this.winrate = MathUtils.roundToTwoDigits(winrate * currentPonderation + deckMetaStat.getWinrate() * newDeckPonderation);
         numberOfMatches += deckMetaStat.getNumberOfGamesPlayed();
+    }
+
+    @Override
+    public String toString() {
+        return name + " [ " + numberOfMatches + " games / "
+          + winrate + "% winrate / "
+          + "decks : "
+          + decks.stream().map(Deck::toDeckCode).collect(Collectors.joining(", "));
     }
 }

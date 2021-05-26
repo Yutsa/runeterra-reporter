@@ -52,6 +52,10 @@ public class Deck {
             .collect(Collectors.toSet());
   }
 
+  public String toDeckCode() {
+    return deckEncoder.encode(this);
+  }
+
   public static Deck fromCode(String deckCode) {
     return deckEncoder.decode(deckCode);
   }

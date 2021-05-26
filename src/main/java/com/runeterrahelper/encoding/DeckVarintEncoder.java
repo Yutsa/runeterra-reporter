@@ -14,13 +14,14 @@ class DeckVarintEncoder {
     private final DeckSorter deckSorter;
     private final int format = 1;
     private final int version = 3;
-    private final VarInt varInt = new VarInt();
+    private VarInt varInt = new VarInt();
 
     public DeckVarintEncoder(DeckSorter deckSorter) {
         this.deckSorter = deckSorter;
     }
 
     public VarInt encode(Deck deck) {
+        varInt = new VarInt();
         encodeFormatAndVersion();
         SortedDeck sortedDeck = deckSorter.sort(deck);
         encodeXOfs(sortedDeck.getThreeOfs());
