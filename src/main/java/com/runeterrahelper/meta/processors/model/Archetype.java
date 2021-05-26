@@ -2,6 +2,7 @@ package com.runeterrahelper.meta.processors.model;
 
 import com.runeterrahelper.cards.Region;
 import com.runeterrahelper.decks.Deck;
+import com.runeterrahelper.utils.MathUtils;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -10,8 +11,8 @@ import java.util.Set;
 public class Archetype {
     private final String name;
     private final Set<Region> regions;
-    private final double winrate;
-    private final int numberOfMatches;
+    private double winrate;
+    private int numberOfMatches;
     private final Set<Deck> decks = new HashSet<>();
 
     public Archetype(String name, Set<Region> regions, double winrate, int numberOfMatches) {
@@ -19,6 +20,13 @@ public class Archetype {
         this.regions = regions;
         this.winrate = winrate;
         this.numberOfMatches = numberOfMatches;
+    }
+
+    public Archetype(String name) {
+        this.name = name;
+        regions = new HashSet<>();
+        winrate = 0;
+        numberOfMatches = 0;
     }
 
     public String getName() {
@@ -43,5 +51,13 @@ public class Archetype {
 
     public void addToDecks(Deck... decks) {
         this.decks.addAll(Arrays.asList(decks));
+    }
+
+    public void addDeckStats(final DeckMetaStat deckMetaStat) {
+        addToDecks(deckMetaStat.getDeck());
+        double currentPonderation = (double) numberOfMatches / (numberOfMatches + deckMetaStat.getNumberOfGamesPlayed());
+        double newDeckPonderation = 1 - currentPonderation;
+        this.winrate = MathUtils.roundToTwoDigits(winrate * currentPonderation + deckMetaStat.getWinrate() * newDeckPonderation);
+        numberOfMatches += deckMetaStat.getNumberOfGamesPlayed();
     }
 }

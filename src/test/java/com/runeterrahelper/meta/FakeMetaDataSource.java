@@ -9,7 +9,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class FakeMetaDataSource implements MetaDataSource {
-    private Set<DeckMetaStat> decksPlayed = new HashSet<>();
+    private final Set<DeckMetaStat> decksPlayed = new HashSet<>();
 
     @Override
     public Set<Archetype> retrieveArchetypes() {

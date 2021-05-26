@@ -1,5 +1,8 @@
 package com.runeterrahelper.matches;
 
+import java.util.Set;
+
+import com.runeterrahelper.cards.Region;
 import com.runeterrahelper.decks.Deck;
 
 class MatchRecap {
@@ -11,20 +14,20 @@ class MatchRecap {
         this.player2 = player2;
     }
 
-    public Player getPlayer1() {
-        return player1;
-    }
-
-    public Player getPlayer2() {
-        return player2;
-    }
-
-    public Deck firstDeckCode() {
+    public Deck player1Deck() {
         return player1.getDeck();
     }
 
-    public Deck secondDeckCode() {
+    public Deck player2Deck() {
         return player2.getDeck();
+    }
+
+    public Set<Region> player1Regions() {
+        return player1.getRegions();
+    }
+
+    public Set<Region> player2Regions() {
+        return player2.getRegions();
     }
 
     public Player victoriousPlayer() {

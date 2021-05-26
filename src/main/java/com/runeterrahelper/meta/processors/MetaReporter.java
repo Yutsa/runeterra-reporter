@@ -1,32 +1,23 @@
 package com.runeterrahelper.meta.processors;
 
-import com.runeterrahelper.meta.datasources.MetaDataSource;
-import com.runeterrahelper.meta.processors.model.Archetype;
-import com.runeterrahelper.meta.processors.model.DeckMetaStat;
-import com.runeterrahelper.meta.processors.model.MetaReport;
+import java.util.*;
 
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
+import com.runeterrahelper.meta.datasources.MetaDataSource;
+import com.runeterrahelper.meta.processors.model.*;
 
 public class MetaReporter {
-    private final MetaDataSource metaDataSource;
 
-    public MetaReporter(MetaDataSource metaDataSource) {
-        this.metaDataSource = metaDataSource;
-    }
+  private final MetaDataSource metaDataSource;
 
-    public MetaReport generateReport() {
-        Set<DeckMetaStat> deckMetaStats = metaDataSource.retrieveDecks();
-        List<Archetype> archetypes = deckMetaStats.stream()
-                .map(deckStat -> createArchtype(deckStat))
-                .collect(Collectors.toList());
-        return new MetaReport(archetypes);
-    }
+  public MetaReporter(MetaDataSource metaDataSource) {
+    this.metaDataSource = metaDataSource;
+  }
 
-    private Archetype createArchtype(DeckMetaStat deckStat) {
-        Archetype archetype = new Archetype("foo", null, deckStat.getWinrate(), deckStat.getNumberOfGamesPlayed());
-        archetype.addToDecks(deckStat.getDeck());
-        return archetype;
-    }
+  public MetaReport generateReport() {
+    Set<DeckMetaStat> deckMetaStats = metaDataSource.retrieveDecks();
+    var archetype = new Archetype("foobar");
+
+    deckMetaStats.forEach(archetype::addDeckStats);
+    return new MetaReport(List.of(archetype));
+  }
 }
