@@ -2,6 +2,8 @@ package com.runeterrahelper.meta.processors;
 
 import com.runeterrahelper.archetypes.Archetype;
 import com.runeterrahelper.archetypes.ArchetypeCompatibilityChecker;
+import com.runeterrahelper.cards.CardWithDataFactory;
+import com.runeterrahelper.cards.repository.FakeCardRepository;
 import com.runeterrahelper.decks.Deck;
 import com.runeterrahelper.decks.DeckWithDataFactory;
 import io.cucumber.java.en.Given;
@@ -14,6 +16,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class ArchetypeGroupingStepDefs {
 
+  private final DeckWithDataFactory deckWithDataFactory = new DeckWithDataFactory(new CardWithDataFactory(new FakeCardRepository()));
   private Archetype archetype;
   private boolean isCompatible;
 
@@ -25,7 +28,7 @@ public class ArchetypeGroupingStepDefs {
   @Given("the archetype contains the decks:")
   public void the_archetype_contains_the_decks(List<String> deckCodes) {
     deckCodes.stream()
-             .map(DeckWithDataFactory::fromCode)
+             .map(deckWithDataFactory::fromCode)
              .forEach(archetype::addToDecks);
   }
 

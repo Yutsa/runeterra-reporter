@@ -4,14 +4,11 @@ import org.apache.commons.lang.StringUtils;
 
 import java.util.Objects;
 
-import static com.runeterrahelper.cards.CardType.CHAMPION;
-
 public class Card {
 
     private final ReleaseSet releaseSet;
     private final Region region;
     private final int cardNumber;
-    private CardType cardType;
 
     public Card(ReleaseSet releaseSet, Region region, int cardNumber) {
         this.releaseSet = releaseSet;
@@ -61,13 +58,5 @@ public class Card {
     @Override
     public int hashCode() {
         return Objects.hash(releaseSet, region, cardNumber);
-    }
-
-    public static String getName(Card card) {
-        return null;
-    }
-
-    public boolean isChampion() {
-        return Objects.equals(CHAMPION, cardType);
     }
 }

@@ -1,6 +1,5 @@
 package com.runeterrahelper.decks;
 
-import com.runeterrahelper.cards.Card;
 import com.runeterrahelper.cards.repository.CardWithData;
 
 import java.util.List;
@@ -14,7 +13,7 @@ public class DeckWithData extends Deck {
         this.cards = cards;
     }
 
-    public Set<Card> getChampions() {
+    public Set<CardWithData> getChampions() {
         return cards.stream()
                 .filter(CardWithData::isChampion)
                 .collect(Collectors.toSet());

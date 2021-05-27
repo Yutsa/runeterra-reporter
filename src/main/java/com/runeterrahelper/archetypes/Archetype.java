@@ -1,7 +1,7 @@
 package com.runeterrahelper.archetypes;
 
-import com.runeterrahelper.cards.Card;
 import com.runeterrahelper.cards.Region;
+import com.runeterrahelper.cards.repository.CardWithData;
 import com.runeterrahelper.decks.DeckWithData;
 
 import java.util.Arrays;
@@ -20,13 +20,13 @@ public class Archetype {
 
     public String getName() {
         Set<Region> regions = decks.stream().flatMap(deck -> deck.getRegions().stream()).collect(Collectors.toSet());
-        Set<Card> champions = decks.stream().flatMap(deck -> deck.getChampions().stream()).collect(Collectors.toSet());
+        Set<CardWithData> champions = decks.stream().flatMap(deck -> deck.getChampions().stream()).collect(Collectors.toSet());
         StringJoiner sj = new StringJoiner(" ");
         regions.stream()
                 .map(Region::getName)
                 .forEach(sj::add);
         champions.stream()
-                .map(Card::getName)
+                .map(CardWithData::getName)
                 .forEach(sj::add);
         return sj.toString();
     }
