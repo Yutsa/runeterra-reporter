@@ -69,16 +69,4 @@ public class Archetype {
            + "decks : "
            + decks.stream().map(Deck::toDeckCode).collect(Collectors.joining(", "));
   }
-
-  public boolean isComptabileWithDeck(final Deck deck) {
-    return decks.stream()
-                .anyMatch(archetypeDeck -> deckAreSimilar(archetypeDeck, deck));
-  }
-
-  private boolean deckAreSimilar(final Deck archetypeDeck, final Deck deck) {
-    int numberOfCardInReference = archetypeDeck.getCards().size();
-    return archetypeDeck.getCards().stream()
-                        .filter(card -> deck.getCards().contains(card))
-                        .count() >= numberOfCardInReference / 2;
-  }
 }

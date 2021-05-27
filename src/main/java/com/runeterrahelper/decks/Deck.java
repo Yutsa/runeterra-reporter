@@ -25,6 +25,10 @@ public class Deck {
     return cards;
   }
 
+  public int numberOfDifferentCards() {
+    return cards.size();
+  }
+
   public List<Card> oneOfs() {
     return retrieveCardsInXCopies(1);
   }

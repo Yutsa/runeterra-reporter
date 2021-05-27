@@ -7,18 +7,18 @@ import java.util.List;
 import org.assertj.core.api.SoftAssertions;
 
 import com.runeterrahelper.decks.Deck;
-import com.runeterrahelper.meta.processors.MetaReporter;
+import com.runeterrahelper.meta.processors.*;
 import com.runeterrahelper.meta.processors.model.*;
 import io.cucumber.java.en.*;
 
 public class MetaReportStepDefs {
 
-  private FakeMetaDataSource metaDataSource;
+  private FakeMetaDatasource metaDataSource;
   private MetaReport metaReport;
 
   @Given("a datasource")
   public void a_datasource() {
-    metaDataSource = new FakeMetaDataSource();
+    metaDataSource = new FakeMetaDatasource();
   }
 
   @Given("the datasource contains the deck {string} with {int} games played and {int}% winrate")
@@ -28,7 +28,7 @@ public class MetaReportStepDefs {
 
   @When("the meta report is generated")
   public void the_meta_report_is_generated() {
-    metaReport = new MetaReporter(metaDataSource).generateReport();
+    metaReport = new MetaReporter(metaDataSource, new ArchetypeGenerator(new ArchetypeCompatibilityChecker())).generateReport();
   }
 
   @Then("it should show one archetype containing the decks {string} with {int} games played and {double}% winrate.")
@@ -53,7 +53,7 @@ public class MetaReportStepDefs {
     });
   }
 
-  @Then("it should contain an archetype with {int} games played and {int}% winrate with the following decks:")
+  @Then("it should contain an archetype with {int} games played and {double}% winrate with the following decks:")
   public void it_should_contain_an_archetype_with_games_played_and_winrate_with_the_following_decks(int numberOfGames, double winrate, List<String> deckCodes) {
     assertThat(metaReport.getArchetypes()).anyMatch(archetype -> checkArchetype(archetype, numberOfGames, winrate, deckCodes));
   }

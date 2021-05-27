@@ -1,17 +1,16 @@
 package com.runeterrahelper.meta.processors;
 
-import java.util.*;
-
-import com.runeterrahelper.meta.datasources.MetaDataSource;
-import com.runeterrahelper.meta.processors.model.*;
+import com.runeterrahelper.meta.datasources.MetaDatasource;
+import com.runeterrahelper.meta.processors.model.MetaReport;
 
 public class MetaReporter {
 
-  private final MetaDataSource metaDataSource;
-  private final ArchetypeGenerator archetypeGenerator = new ArchetypeGenerator();
+  private final MetaDatasource metaDataSource;
+  private final ArchetypeGenerator archetypeGenerator;
 
-  public MetaReporter(MetaDataSource metaDataSource) {
-    this.metaDataSource = metaDataSource;
+  public MetaReporter(MetaDatasource metaDatasource, ArchetypeGenerator archetypeGenerator) {
+    this.metaDataSource = metaDatasource;
+    this.archetypeGenerator = archetypeGenerator;
   }
 
   public MetaReport generateReport() {
