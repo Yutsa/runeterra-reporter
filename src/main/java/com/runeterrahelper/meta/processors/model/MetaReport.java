@@ -3,13 +3,13 @@ package com.runeterrahelper.meta.processors.model;
 import java.util.List;
 
 public class MetaReport {
-    private final List<Archetype> archetypes;
+    private final List<ArchetypeStat> archetypeStats;
 
-    public MetaReport(List<Archetype> archetypes) {
-        this.archetypes = archetypes;
+    public MetaReport(List<ArchetypeStat> archetypeStats) {
+        this.archetypeStats = archetypeStats;
     }
 
-    public List<Archetype> getArchetypes() {
-        return archetypes;
+    public List<ArchetypeStat> getArchetypes() {
+        return archetypeStats;
     }
 }

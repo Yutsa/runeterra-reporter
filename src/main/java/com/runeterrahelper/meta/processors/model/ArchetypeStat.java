@@ -1,40 +1,32 @@
 package com.runeterrahelper.meta.processors.model;
 
-import java.util.*;
+import java.util.Set;
 import java.util.stream.Collectors;
 
-import com.runeterrahelper.cards.Region;
-import com.runeterrahelper.decks.Deck;
+import com.runeterrahelper.archetypes.Archetype;
+import com.runeterrahelper.decks.*;
 import com.runeterrahelper.utils.MathUtils;
 
-public class Archetype {
+public class ArchetypeStat {
 
-  private final String name;
-  private final Set<Region> regions;
-  private final Set<Deck> decks = new HashSet<>();
+  private final Archetype archetype;
   private double winrate;
   private int numberOfMatches;
 
-  public Archetype(String name, Set<Region> regions, double winrate, int numberOfMatches) {
-    this.name = name;
-    this.regions = regions;
+  public ArchetypeStat(Archetype archetype, double winrate, int numberOfMatches) {
+    this.archetype = archetype;
     this.winrate = winrate;
     this.numberOfMatches = numberOfMatches;
   }
 
-  public Archetype(String name) {
-    this.name = name;
-    regions = new HashSet<>();
+  public ArchetypeStat(Archetype archetype) {
+    this.archetype = archetype;
     winrate = 0;
     numberOfMatches = 0;
   }
 
   public String getName() {
-    return name;
-  }
-
-  public Set<Region> getRegions() {
-    return regions;
+    return archetype.getName();
   }
 
   public double getWinrate() {
@@ -46,15 +38,15 @@ public class Archetype {
   }
 
   public Set<Deck> getDecks() {
-    return decks;
+    return archetype.getDecks();
   }
 
-  public void addToDecks(Deck... decks) {
-    this.decks.addAll(Arrays.asList(decks));
+  public Archetype getArchetype() {
+    return archetype;
   }
 
   public void addDeckStats(final DeckMetaStat deckMetaStat) {
-    addToDecks(deckMetaStat.getDeck());
+    archetype.addToDecks(deckMetaStat.getDeck());
     double currentPonderation = (double) numberOfMatches / (numberOfMatches + deckMetaStat.getNumberOfGamesPlayed());
     double newDeckPonderation = 1 - currentPonderation;
     this.winrate = MathUtils.roundToTwoDigits(
@@ -64,9 +56,9 @@ public class Archetype {
 
   @Override
   public String toString() {
-    return name + " [ " + numberOfMatches + " games / "
+    return getName() + " [ " + numberOfMatches + " games / "
            + winrate + "% winrate / "
            + "decks : "
-           + decks.stream().map(Deck::toDeckCode).collect(Collectors.joining(", "));
+           + getDecks().stream().map(Deck::toDeckCode).collect(Collectors.joining(", "));
   }
 }

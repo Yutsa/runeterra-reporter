@@ -6,15 +6,15 @@ import com.runeterrahelper.meta.processors.model.MetaReport;
 public class MetaReporter {
 
   private final MetaDatasource metaDataSource;
-  private final ArchetypeGenerator archetypeGenerator;
+  private final ArchetypeStatGenerator archetypeStatGenerator;
 
-  public MetaReporter(MetaDatasource metaDatasource, ArchetypeGenerator archetypeGenerator) {
+  public MetaReporter(MetaDatasource metaDatasource, ArchetypeStatGenerator archetypeStatGenerator) {
     this.metaDataSource = metaDatasource;
-    this.archetypeGenerator = archetypeGenerator;
+    this.archetypeStatGenerator = archetypeStatGenerator;
   }
 
   public MetaReport generateReport() {
-    return new MetaReport(archetypeGenerator.generateArchetypes(metaDataSource.retrieveDecks()));
+    return new MetaReport(archetypeStatGenerator.generateArchetypes(metaDataSource.retrieveDecks()));
   }
 
 }

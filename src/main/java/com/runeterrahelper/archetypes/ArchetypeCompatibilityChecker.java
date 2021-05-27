@@ -1,7 +1,6 @@
-package com.runeterrahelper.meta.processors;
+package com.runeterrahelper.archetypes;
 
 import com.runeterrahelper.decks.Deck;
-import com.runeterrahelper.meta.processors.model.Archetype;
 
 /**
  * Process responsible to check if a deck is compatible with a given archetype.
@@ -12,7 +11,7 @@ public class ArchetypeCompatibilityChecker {
 
   public boolean isArchetypeCompatibleWithDeck(final Archetype archetype, final Deck deck) {
     return archetype.getDecks().stream()
-                    .anyMatch(archetypeDeck -> deckAreSimilar(archetypeDeck, deck));
+                        .anyMatch(archetypeDeck -> deckAreSimilar(archetypeDeck, deck));
   }
 
   private boolean deckAreSimilar(final Deck archetypeDeck, final Deck deck) {

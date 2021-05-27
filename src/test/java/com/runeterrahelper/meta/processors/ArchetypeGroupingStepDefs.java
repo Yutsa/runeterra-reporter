@@ -1,12 +1,12 @@
-package com.runeterrahelper.meta;
+package com.runeterrahelper.meta.processors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 
-import com.runeterrahelper.decks.Deck;
-import com.runeterrahelper.meta.processors.ArchetypeCompatibilityChecker;
-import com.runeterrahelper.meta.processors.model.Archetype;
+import com.runeterrahelper.archetypes.Archetype;
+import com.runeterrahelper.decks.*;
+import com.runeterrahelper.archetypes.ArchetypeCompatibilityChecker;
 import io.cucumber.java.en.*;
 
 public class ArchetypeGroupingStepDefs {
