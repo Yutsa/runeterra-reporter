@@ -1,17 +1,18 @@
 package com.runeterrahelper.meta.processors;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-import java.util.List;
-
-import org.assertj.core.api.SoftAssertions;
-
 import com.runeterrahelper.archetypes.ArchetypeCompatibilityChecker;
 import com.runeterrahelper.decks.Deck;
 import com.runeterrahelper.meta.FakeMetaDatasource;
-import com.runeterrahelper.meta.processors.*;
-import com.runeterrahelper.meta.processors.model.*;
-import io.cucumber.java.en.*;
+import com.runeterrahelper.meta.processors.model.ArchetypeStat;
+import com.runeterrahelper.meta.processors.model.MetaReport;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import org.assertj.core.api.SoftAssertions;
+
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class MetaReportStepDefs {
 
@@ -55,6 +56,11 @@ public class MetaReportStepDefs {
     });
   }
 
+  @Then("it should contain an archetype named {string}")
+  public void it_should_contain_an_archetype_named(String archetypeName) {
+    assertThat(metaReport.getArchetypes().get(0).getName()).isEqualTo(archetypeName);
+  }
+
   @Then("it should contain an archetype with {int} games played and {double}% winrate with the following decks:")
   public void it_should_contain_an_archetype_with_games_played_and_winrate_with_the_following_decks(int numberOfGames, double winrate, List<String> deckCodes) {
     assertThat(metaReport.getArchetypes()).anyMatch(archetype -> checkArchetype(archetype, numberOfGames, winrate, deckCodes));
@@ -71,4 +77,5 @@ public class MetaReportStepDefs {
                     .map(Deck::fromCode)
                     .allMatch(deck -> archetypeStat.getDecks().contains(deck));
   }
+
 }

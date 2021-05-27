@@ -46,3 +46,8 @@ Feature: Meta reports
       | CECACAYBAIBAEAICAYCAIBZGFU3UGBABAECRUHZQAIAQCAIWAICAODK5AEAQIB2F        |
     And it should contain an archetype with 230 games played and 55% winrate with the following decks:
       | CEBQCAICBEAQGAQZA4CAOBIUDITDOULHAIAQGAQUAUCAOAKFJ5OWMAIBAQDTW |
+
+    Scenario: Generating an archetype name using the regions and the champions in the archetype.
+      Given the datasource contains the deck "CEBQMBAHEYWTOQ25M4AQGAICAIAQCBI7AQBACAIWDIAQIBYNAIBACAQGAECACCIBAECAOFA" with 120 games played and 58% winrate
+      When the meta report is generated
+      Then it should contain an archetype named "Freljord Shurima Renekton Sivir Sejuani"

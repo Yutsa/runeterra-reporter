@@ -1,13 +1,15 @@
 package com.runeterrahelper.meta.processors;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import com.runeterrahelper.archetypes.Archetype;
+import com.runeterrahelper.archetypes.ArchetypeCompatibilityChecker;
+import com.runeterrahelper.decks.Deck;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 
 import java.util.List;
 
-import com.runeterrahelper.archetypes.Archetype;
-import com.runeterrahelper.decks.*;
-import com.runeterrahelper.archetypes.ArchetypeCompatibilityChecker;
-import io.cucumber.java.en.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class ArchetypeGroupingStepDefs {
 
@@ -16,7 +18,7 @@ public class ArchetypeGroupingStepDefs {
 
   @Given("an archetype")
   public void an_archetype() {
-    archetype = new Archetype("foo");
+    archetype = new Archetype();
   }
 
   @Given("the archetype contains the decks:")

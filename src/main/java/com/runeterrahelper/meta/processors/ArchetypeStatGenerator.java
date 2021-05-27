@@ -1,9 +1,13 @@
 package com.runeterrahelper.meta.processors;
 
-import java.util.*;
+import com.runeterrahelper.archetypes.Archetype;
+import com.runeterrahelper.archetypes.ArchetypeCompatibilityChecker;
+import com.runeterrahelper.meta.processors.model.ArchetypeStat;
+import com.runeterrahelper.meta.processors.model.DeckMetaStat;
 
-import com.runeterrahelper.archetypes.*;
-import com.runeterrahelper.meta.processors.model.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 class ArchetypeStatGenerator {
 
@@ -26,7 +30,7 @@ class ArchetypeStatGenerator {
   }
 
   private ArchetypeStat createNewArchetypeStatistics() {
-    var archetype = new ArchetypeStat(new Archetype("foobar"));
+    var archetype = new ArchetypeStat(new Archetype());
     archetypeStats.add(archetype);
     return archetype;
   }

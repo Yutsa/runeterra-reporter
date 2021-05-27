@@ -3,22 +3,24 @@ package com.runeterrahelper.cards;
 import java.util.Arrays;
 
 public enum Region {
-    DEMACIA("DE", 0),
-    FRELJORD("FR", 1),
-    IONIA("IO", 2),
-    NOXUS("NX", 3),
-    PILTOVER_AND_ZAUN("PZ", 4),
-    SHADOW_ISLES("SI", 5),
-    BILGEWATER("BW", 6),
-    MOUNT_TARGON("MT", 9),
-    SHURIMA("SH", 7);
+    DEMACIA("DE", 0, "Demacia"),
+    FRELJORD("FR", 1, "Freljord"),
+    IONIA("IO", 2, "Ionia"),
+    NOXUS("NX", 3, "Noxus"),
+    PILTOVER_AND_ZAUN("PZ", 4, "Piltover & Zaun"),
+    SHADOW_ISLES("SI", 5, "Shadow Isles"),
+    BILGEWATER("BW", 6, "Bilgewater"),
+    MOUNT_TARGON("MT", 9, "Targon"),
+    SHURIMA("SH", 7, "Shurima");
 
     private final String regionCode;
     private final int id;
+    private final String name;
 
-    Region(String regionCode, int id) {
+    Region(String regionCode, int id, String name) {
         this.regionCode = regionCode;
         this.id = id;
+        this.name = name;
     }
 
     public static Region fromString(final String regionCode) {
@@ -41,5 +43,9 @@ public enum Region {
 
     public int getId() {
         return id;
+    }
+
+    public String getName() {
+        return name;
     }
 }
