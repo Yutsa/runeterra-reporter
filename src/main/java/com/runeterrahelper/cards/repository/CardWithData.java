@@ -19,6 +19,12 @@ public class CardWithData extends Card {
         this.name = name;
     }
 
+    public CardWithData(Card card, CardType cardType, String name) {
+        super(card.getReleaseSet(), card.getRegion(), card.getCardNumber());
+        this.cardType = cardType;
+        this.name = name;
+    }
+
     public boolean isChampion() {
         return Objects.equals(CHAMPION, cardType);
     }

@@ -48,6 +48,9 @@ Feature: Meta reports
       | CEBQCAICBEAQGAQZA4CAOBIUDITDOULHAIAQGAQUAUCAOAKFJ5OWMAIBAQDTW |
 
     Scenario: Generating an archetype name using the regions and the champions in the archetype.
-      Given the datasource contains the deck "CEBQMBAHEYWTOQ25M4AQGAICAIAQCBI7AQBACAIWDIAQIBYNAIBACAQGAECACCIBAECAOFA" with 120 games played and 58% winrate
+      Given the card with code "04SH020" has name "Sivir" and is a champion
+      Given the card with code "04SH067" has name "Renekton" and is a champion
+      Given the card with code "02FR002" has name "Sejuani" and is a champion
+      And the datasource contains the deck "CEBQMBAHEYWTOQ25M4AQGAICAIAQCBI7AQBACAIWDIAQIBYNAIBACAQGAECACCIBAECAOFA" with 120 games played and 58% winrate
       When the meta report is generated
-      Then it should contain an archetype named "Freljord Shurima Renekton Sivir Sejuani"
+      Then it should contain an archetype named "Freljord Shurima Renekton Sejuani Sivir"

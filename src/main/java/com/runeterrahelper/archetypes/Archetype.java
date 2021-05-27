@@ -4,10 +4,7 @@ import com.runeterrahelper.cards.Region;
 import com.runeterrahelper.cards.repository.CardWithData;
 import com.runeterrahelper.decks.DeckWithData;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.StringJoiner;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Archetype {
@@ -24,9 +21,11 @@ public class Archetype {
         StringJoiner sj = new StringJoiner(" ");
         regions.stream()
                 .map(Region::getName)
+                .sorted()
                 .forEach(sj::add);
         champions.stream()
                 .map(CardWithData::getName)
+                .sorted()
                 .forEach(sj::add);
         return sj.toString();
     }
