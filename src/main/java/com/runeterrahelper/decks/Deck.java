@@ -67,7 +67,7 @@ public class Deck {
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
+    if (!(o instanceof Deck)) return false;
     Deck deck = (Deck) o;
     return cards.equals(deck.cards);
   }
@@ -75,12 +75,5 @@ public class Deck {
   @Override
   public int hashCode() {
     return Objects.hash(cards);
-  }
-
-  public Set<Card> getChampions() {
-    return cards.stream()
-            .map(CardCopies::getCard)
-            .filter(Card::isChampion)
-            .collect(Collectors.toSet());
   }
 }

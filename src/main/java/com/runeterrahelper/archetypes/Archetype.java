@@ -2,7 +2,7 @@ package com.runeterrahelper.archetypes;
 
 import com.runeterrahelper.cards.Card;
 import com.runeterrahelper.cards.Region;
-import com.runeterrahelper.decks.Deck;
+import com.runeterrahelper.decks.DeckWithData;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -12,9 +12,9 @@ import java.util.stream.Collectors;
 
 public class Archetype {
 
-    private final Set<Deck> decks = new HashSet<>();
+    private final Set<DeckWithData> decks = new HashSet<>();
 
-    public Archetype(Deck... decks) {
+    public Archetype(DeckWithData... decks) {
         addToDecks(decks);
     }
 
@@ -31,11 +31,11 @@ public class Archetype {
         return sj.toString();
     }
 
-    public Set<Deck> getDecks() {
+    public Set<DeckWithData> getDecks() {
         return decks;
     }
 
-    public void addToDecks(Deck... decks) {
+    public void addToDecks(DeckWithData... decks) {
         this.decks.addAll(Arrays.asList(decks));
     }
 

@@ -1,13 +1,13 @@
 package com.runeterrahelper.meta.processors.model;
 
-import com.runeterrahelper.decks.Deck;
+import com.runeterrahelper.decks.DeckWithData;
 
 public class DeckMetaStat {
-    private final Deck deck;
+    private final DeckWithData deck;
     private final int numberOfGamesPlayed;
     private final int winrate;
 
-    public DeckMetaStat(Deck deck, int numberOfGamesPlayed, int winrate) {
+    public DeckMetaStat(DeckWithData deck, int numberOfGamesPlayed, int winrate) {
         this.deck = deck;
         this.numberOfGamesPlayed = numberOfGamesPlayed;
         this.winrate = winrate;
@@ -21,7 +21,7 @@ public class DeckMetaStat {
         return winrate;
     }
 
-    public Deck getDeck() {
+    public DeckWithData getDeck() {
         return deck;
     }
 }

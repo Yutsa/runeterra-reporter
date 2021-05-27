@@ -1,6 +1,8 @@
 package com.runeterrahelper.meta;
 
 import com.runeterrahelper.decks.Deck;
+import com.runeterrahelper.decks.DeckWithData;
+import com.runeterrahelper.decks.DeckWithDataFactory;
 import com.runeterrahelper.meta.datasources.MetaDatasource;
 import com.runeterrahelper.meta.processors.model.DeckMetaStat;
 
@@ -16,6 +18,6 @@ public class FakeMetaDatasource implements MetaDatasource {
     }
 
     public void addDeck(String deckCode, int numberOfGames, int winrate) {
-        decksPlayed.add(new DeckMetaStat(Deck.fromCode(deckCode), numberOfGames, winrate));
+        decksPlayed.add(new DeckMetaStat(DeckWithDataFactory.fromCode(deckCode), numberOfGames, winrate));
     }
 }
