@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 
 public class Deck {
 
-  private static DeckEncoder deckEncoder = new DeckEncoder();
+  private static final DeckEncoder deckEncoder = new DeckEncoder();
 
   private final List<CardCopies> cards = new ArrayList<>();
 

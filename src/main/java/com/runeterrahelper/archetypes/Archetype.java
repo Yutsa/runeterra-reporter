@@ -15,6 +15,10 @@ public class Archetype {
         addToDecks(decks);
     }
 
+    public Archetype(Collection<DeckWithData> decks) {
+        addToDecks(decks);
+    }
+
     public String getName() {
         Set<Region> regions = decks.stream().flatMap(deck -> deck.getRegions().stream()).collect(Collectors.toSet());
         Set<CardWithData> champions = decks.stream().flatMap(deck -> deck.getChampions().stream()).collect(Collectors.toSet());
@@ -36,6 +40,10 @@ public class Archetype {
 
     public void addToDecks(DeckWithData... decks) {
         this.decks.addAll(Arrays.asList(decks));
+    }
+
+    public void addToDecks(Collection<DeckWithData> decks) {
+        this.decks.addAll(decks);
     }
 
 }

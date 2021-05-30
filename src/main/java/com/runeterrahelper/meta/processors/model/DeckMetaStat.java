@@ -5,9 +5,9 @@ import com.runeterrahelper.decks.DeckWithData;
 public class DeckMetaStat {
     private final DeckWithData deck;
     private final int numberOfGamesPlayed;
-    private final int winrate;
+    private final double winrate;
 
-    public DeckMetaStat(DeckWithData deck, int numberOfGamesPlayed, int winrate) {
+    public DeckMetaStat(DeckWithData deck, int numberOfGamesPlayed, double winrate) {
         this.deck = deck;
         this.numberOfGamesPlayed = numberOfGamesPlayed;
         this.winrate = winrate;
@@ -17,7 +17,7 @@ public class DeckMetaStat {
         return numberOfGamesPlayed;
     }
 
-    public int getWinrate() {
+    public double getWinrate() {
         return winrate;
     }
 

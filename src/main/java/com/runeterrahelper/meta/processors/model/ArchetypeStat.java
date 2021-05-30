@@ -4,14 +4,17 @@ import com.runeterrahelper.archetypes.Archetype;
 import com.runeterrahelper.decks.Deck;
 import com.runeterrahelper.utils.MathUtils;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class ArchetypeStat {
+public class ArchetypeStat implements Comparable<ArchetypeStat> {
 
     private final Archetype archetype;
     private double winrate;
     private int numberOfMatches;
+    private List<DeckMetaStat> deckMetaStats = new ArrayList<>();
 
     public ArchetypeStat(Archetype archetype, double winrate, int numberOfMatches) {
         this.archetype = archetype;
@@ -49,6 +52,7 @@ public class ArchetypeStat {
     }
 
     public void addDeckStats(final DeckMetaStat deckMetaStat) {
+        deckMetaStats.add(deckMetaStat);
         archetype.addToDecks(deckMetaStat.getDeck());
         double currentPonderation = (double) numberOfMatches / (numberOfMatches + deckMetaStat.getNumberOfGamesPlayed());
         double newDeckPonderation = 1 - currentPonderation;
@@ -63,5 +67,10 @@ public class ArchetypeStat {
                 + winrate + "% winrate / "
                 + "decks : "
                 + getDecks().stream().map(Deck::toDeckCode).collect(Collectors.joining(", "));
+    }
+
+    @Override
+    public int compareTo(ArchetypeStat archetypeStat) {
+        return archetypeStat.getNumberOfMatches() - numberOfMatches;
     }
 }
