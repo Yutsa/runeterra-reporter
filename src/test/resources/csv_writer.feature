@@ -27,8 +27,8 @@ Feature: CSV meta report writer
   Scenario: The deck codes are separated by a ; and are ordered by number of games.
     Given a meta report that an archetype with the following decks:
       | deck                                                                    | numberOfGames | winrate |
-      | CMBQCAICFICAIBYDDIZTSBIEAICAKCILB4BQCAICFQAQGAQFAICAOHC5AIAQCAQGAEBQEFA | 100           | 50      |
-      | CMCACAICFIAQEAQKAQCAOAY2GM4QKBACAQCQSCYPAIAQGAQFAIAQEBRMAEAQIBY4        | 500           | 50      |
+      | CMBQCAICFICAIBYDDIZTSBIEAICAKCILB4BQCAICFQAQGAQFAICAOHC5AIAQCAQGAEBQEFA | 500           | 50      |
+      | CMCACAICFIAQEAQKAQCAOAY2GM4QKBACAQCQSCYPAIAQGAQFAIAQEBRMAEAQIBY4        | 100           | 50      |
       | CMCACAYCAUBACAQGFICAIBYDDIZV2BIEAICAKCILB4AQCBAHHEBACAQCBIAQIAQH        | 9000          | 50      |
     When the meta report is written in CSV
     Then the result should be:

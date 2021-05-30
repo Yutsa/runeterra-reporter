@@ -6,7 +6,6 @@ import com.runeterrahelper.utils.MathUtils;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 public class ArchetypeStat implements Comparable<ArchetypeStat> {
@@ -14,12 +13,17 @@ public class ArchetypeStat implements Comparable<ArchetypeStat> {
     private final Archetype archetype;
     private double winrate;
     private int numberOfMatches;
-    private List<DeckMetaStat> deckMetaStats = new ArrayList<>();
+    private final List<DeckMetaStat> deckMetaStats = new ArrayList<>();
 
+    /**
+     * Creates an {@link ArchetypeStat} from an {@link Archetype} with a given winrate and number of maches.
+     * Using this constructor prevents getting detailed winrate and number of matches for each deck of the archetype.
+     */
     public ArchetypeStat(Archetype archetype, double winrate, int numberOfMatches) {
         this.archetype = archetype;
         this.winrate = winrate;
         this.numberOfMatches = numberOfMatches;
+        archetype.getDecks().forEach(deck -> deckMetaStats.add(new DeckMetaStat(deck, 0, 0)));
     }
 
     public ArchetypeStat(Archetype archetype) {
@@ -40,11 +44,13 @@ public class ArchetypeStat implements Comparable<ArchetypeStat> {
         return numberOfMatches;
     }
 
-    public Set<Deck> getDecks() {
-        return archetype.getDecks()
+    public List<Deck> getDecks() {
+        return deckMetaStats
                 .stream()
+                .sorted()
+                .map(DeckMetaStat::getDeck)
                 .map(Deck.class::cast)
-                .collect(Collectors.toSet());
+                .collect(Collectors.toList());
     }
 
     public Archetype getArchetype() {
