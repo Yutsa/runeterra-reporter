@@ -17,7 +17,8 @@ public class ArchetypeStat implements Comparable<ArchetypeStat> {
 
     /**
      * Creates an {@link ArchetypeStat} from an {@link Archetype} with a given winrate and number of maches.
-     * Using this constructor prevents getting detailed winrate and number of matches for each deck of the archetype.
+     * Using this constructor prevents getting detailed winrate and number of matches for each deck that was already in
+     * the {@link Archetype archetype} instance.
      */
     public ArchetypeStat(Archetype archetype, double winrate, int numberOfMatches) {
         this.archetype = archetype;
@@ -26,8 +27,11 @@ public class ArchetypeStat implements Comparable<ArchetypeStat> {
         archetype.getDecks().forEach(deck -> deckMetaStats.add(new DeckMetaStat(deck, 0, 0)));
     }
 
-    public ArchetypeStat(Archetype archetype) {
-        this.archetype = archetype;
+    /**
+     * Creates an empty {@link ArchetypeStat} that must be filled with {@link ArchetypeStat#addDeckStats(DeckMetaStat)}.
+     */
+    public ArchetypeStat() {
+        this.archetype = new Archetype();
         winrate = 0;
         numberOfMatches = 0;
     }

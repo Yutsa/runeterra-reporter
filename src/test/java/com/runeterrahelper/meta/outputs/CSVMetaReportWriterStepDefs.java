@@ -38,7 +38,7 @@ public class CSVMetaReportWriterStepDefs {
 
     @Given("a meta report that an archetype with the following decks:")
     public void a_meta_report_that_an_archetype_with_the_following_decks(List<Map<String, String>> deckStats) {
-        ArchetypeStat archetypeStat = new ArchetypeStat(new Archetype());
+        ArchetypeStat archetypeStat = new ArchetypeStat();
         for (Map<String, String> deckStat : deckStats) {
             DeckMetaStat deckMetaStat = new DeckMetaStat(deckWithDataFactory.fromCode(deckStat.get("deck")),
                     extractNumberOfGames(deckStat), extractWinrate(deckStat));

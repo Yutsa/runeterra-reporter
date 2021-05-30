@@ -1,6 +1,5 @@
 package com.runeterrahelper.meta.processors;
 
-import com.runeterrahelper.archetypes.Archetype;
 import com.runeterrahelper.archetypes.ArchetypeCompatibilityChecker;
 import com.runeterrahelper.meta.processors.model.ArchetypeStat;
 import com.runeterrahelper.meta.processors.model.DeckMetaStat;
@@ -30,8 +29,7 @@ class ArchetypeStatGenerator {
   }
 
   private ArchetypeStat createNewArchetypeStatistics() {
-    var archetype = new ArchetypeStat(new Archetype());
-    archetypeStats.add(archetype);
-    return archetype;
+    archetypeStats.add(new ArchetypeStat());
+    return new ArchetypeStat();
   }
 }
