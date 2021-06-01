@@ -29,7 +29,8 @@ class ArchetypeStatGenerator {
   }
 
   private ArchetypeStat createNewArchetypeStatistics() {
-    archetypeStats.add(new ArchetypeStat());
-    return new ArchetypeStat();
+    var archetypeStat = new ArchetypeStat();
+    archetypeStats.add(archetypeStat);
+    return archetypeStat;
   }
 }
