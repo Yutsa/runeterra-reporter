@@ -66,12 +66,6 @@ public class MetaReportStepDefs {
         assertThat(metaReport.getArchetypes()).anyMatch(archetype -> checkArchetype(archetype, numberOfGames, winrate, deckCodes));
     }
 
-    @Given("the card with code {string} has name {string} and is a champion")
-    public void the_card_with_code_has_name_and_is_a_champion(String cardCode, String cardName) {
-        Card card = Card.fromCode(cardCode);
-        // cardRepository.addCard(new CardWithData(card, CardType.CHAMPION, cardName));
-    }
-
     private boolean checkArchetype(final ArchetypeStat archetypeStat, final int numberOfGames, final double winrate, final List<String> deckCodes) {
         return archetypesContainsAllDecks(archetypeStat, deckCodes) &&
                 archetypeStat.getNumberOfMatches() == numberOfGames &&

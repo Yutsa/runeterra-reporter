@@ -48,18 +48,12 @@ Feature: Meta reports
       | CEBQCAICBEAQGAQZA4CAOBIUDITDOULHAIAQGAQUAUCAOAKFJ5OWMAIBAQDTW |
 
   Scenario: Generating an archetype name using the regions and the champions in the archetype.
-    Given the card with code "04SH020" has name "Sivir" and is a champion
-    Given the card with code "04SH067" has name "Renekton" and is a champion
-    Given the card with code "02FR002" has name "Sejuani" and is a champion
     And the datasource contains the deck "CEBQMBAHEYWTOQ25M4AQGAICAIAQCBI7AQBACAIWDIAQIBYNAIBACAQGAECACCIBAECAOFA" with 120 games played and 58% winrate
     When the meta report is generated
     Then it should contain an archetype named "Freljord Shurima Renekton Sejuani Sivir"
 
   Scenario: An archetype can have decks with champions and without champions.
   For instance, the Matron Cithria archetype has versions with Elise, with  Shyvana, with Kalista or without any champions.
-    Given the card with code "03DE011" has name "Shyvana" and is a champion
-    Given the card with code "01SI030" has name "Kalista" and is a champion
-    Given the card with code "01SI053" has name "Elise" and is a champion
     And the datasource contains the deck "CECQCAIADIAQGBIEAECAABIDAQCQIDIQAUAQKBAMFQYDCAQBAIAAQAQBAAHRGAIBAECRS" with 100 games played and 51% winrate
     And the datasource contains the deck "CECQCAIADIAQGBIEAECAABICAQCQ2EAGAECQIDA6FAWDAAIDAECQWMJVAEAQEBIE" with 100 games played and 51% winrate
     And the datasource contains the deck "CECACAIADIAQIAAFAICAKDIQAYAQKBA6FAWDAMIEAEAQADYBAIAACAIDAUCAEAIFBMGAA" with 100 games played and 51% winrate
@@ -69,9 +63,6 @@ Feature: Meta reports
 
   Scenario: An archetype can have different decks variant with different champions.
   For instance the Dragons decks can combine Shyvana, Zoe and Aurelion Sol in different ways
-    Given the card with code "03DE011" has name "Shyvana" and is a champion
-    Given the card with code "03MT009" has name "Zoe" and is a champion
-    Given the card with code "03MT087" has name "Aurelion Sol" and is a champion
     And the datasource contains the deck "CICQCAIADIAQEAABAECAADQCAMEVLXIBAQBQABQIBMHAGAIBAAFQCBAJAQCAGCIDHFLWIAIBAMEQS" with 100 games played and 50% winrate
     And the datasource contains the deck "CICACAIADIAQICIEAIBQSVO5AECAGAAGBAFQ4BABAIAACAIEAAHAEAIABMHQIAYJAM4VOZAA" with 100 games played and 50% winrate
     And the datasource contains the deck "CECQCBAABYCAGAAGBAFQ4AIBAANACAYJKUAQEAABAMAQICIEAUBQSAZZK5SN2AIBAEAAWAICAMEQSMY" with 100 games played and 50% winrate
