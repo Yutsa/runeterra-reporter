@@ -12,6 +12,6 @@ public class TestGeneratingCSVFromMobalytics {
     void name() {
         MetaReporter metaReporter = new MetaReporter(new MobalyticsDataSource(new MongoCardRepository("runeterra")), new ArchetypeStatGenerator(new ArchetypeCompatibilityChecker()));
         MetaReport metaReport = metaReporter.generateReport();
-        new CSVMetaReportWriter("/home/edouard/Téléchargements/report.csv").writeReport(metaReport);
+        new CSVMetaReportWriter("/home/edouard/Téléchargements/report-plat-plus.csv").writeReport(metaReport);
     }
 }
