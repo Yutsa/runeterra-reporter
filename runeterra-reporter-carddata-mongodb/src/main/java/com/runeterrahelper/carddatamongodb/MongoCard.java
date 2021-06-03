@@ -1,6 +1,6 @@
 package com.runeterrahelper.carddatamongodb;
 
-public class Card {
+public class MongoCard {
 
   private String cardCode;
   private String name;
@@ -9,7 +9,7 @@ public class Card {
     return cardCode;
   }
 
-  public Card setCardCode(final String cardCode) {
+  public MongoCard setCardCode(final String cardCode) {
     this.cardCode = cardCode;
     return this;
   }
@@ -18,7 +18,7 @@ public class Card {
     return name;
   }
 
-  public Card setName(final String name) {
+  public MongoCard setName(final String name) {
     this.name = name;
     return this;
   }

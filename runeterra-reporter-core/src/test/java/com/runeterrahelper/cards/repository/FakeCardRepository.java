@@ -12,9 +12,8 @@ public class FakeCardRepository implements CardRepository {
     private final Map<String, CardWithData> cards = new HashMap<>();
 
     @Override
-    public CardWithData getCardFromCode(String cardCode) {
-        Card card = Card.fromCode(cardCode);
-        return Optional.ofNullable(cards.get(cardCode))
+    public CardWithData getCardWithDataFromCard(Card card) {
+        return Optional.ofNullable(cards.get(card.getCode()))
                 .orElse(new CardWithData(card.getReleaseSet(), card.getRegion(), card.getCardNumber(), CardType.SPELL, card.getCode()));
     }
 

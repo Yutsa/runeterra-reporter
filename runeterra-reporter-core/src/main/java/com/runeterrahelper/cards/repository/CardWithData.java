@@ -33,4 +33,11 @@ public class CardWithData extends Card {
         return name;
     }
 
+    @Override
+    public String toString() {
+        return "CardWithData{" +
+               "cardType=" + cardType +
+               ", name='" + name + '\'' +
+               '}';
+    }
 }

@@ -11,6 +11,6 @@ public class CardWithDataFactory {
     }
 
     public CardWithData fromCard(Card card) {
-        return cardRepository.getCardFromCode(card.getCode());
+        return cardRepository.getCardWithDataFromCard(card);
     }
 }
