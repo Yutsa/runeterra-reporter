@@ -1,7 +1,9 @@
 package com.runeterrahelper.cards.repository;
 
+import java.util.Optional;
+
 import com.runeterrahelper.cards.Card;
 
 public interface CardRepository {
-    CardWithData getCardWithDataFromCard(Card card);
+    Optional<CardWithData> getCardWithDataFromCard(Card card);
 }

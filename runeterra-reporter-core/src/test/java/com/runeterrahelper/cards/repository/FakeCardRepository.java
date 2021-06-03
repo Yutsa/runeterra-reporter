@@ -1,23 +1,23 @@
 package com.runeterrahelper.cards.repository;
 
-import com.runeterrahelper.cards.Card;
-import com.runeterrahelper.cards.CardType;
+import java.util.*;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
+import com.runeterrahelper.cards.*;
 
 public class FakeCardRepository implements CardRepository {
 
-    private final Map<String, CardWithData> cards = new HashMap<>();
+  private final Map<String, CardWithData> cards = new HashMap<>();
 
-    @Override
-    public CardWithData getCardWithDataFromCard(Card card) {
-        return Optional.ofNullable(cards.get(card.getCode()))
-                .orElse(new CardWithData(card.getReleaseSet(), card.getRegion(), card.getCardNumber(), CardType.SPELL, card.getCode()));
+  @Override
+  public Optional<CardWithData> getCardWithDataFromCard(Card card) {
+    CardWithData res = cards.get(card.getCode());
+    if (res == null) {
+      res = new CardWithData(card.getReleaseSet(), card.getRegion(), card.getCardNumber(), CardType.SPELL, card.getCode());
     }
+    return Optional.of(res);
+  }
 
-    public void addCard(CardWithData cardWithData) {
-        cards.put(cardWithData.getCode(), cardWithData);
-    }
+  public void addCard(CardWithData cardWithData) {
+    cards.put(cardWithData.getCode(), cardWithData);
+  }
 }

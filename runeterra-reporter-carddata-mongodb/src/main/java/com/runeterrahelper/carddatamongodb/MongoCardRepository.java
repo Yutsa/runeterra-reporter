@@ -2,6 +2,8 @@ package com.runeterrahelper.carddatamongodb;
 
 import static org.springframework.data.mongodb.core.query.Criteria.where;
 
+import java.util.Optional;
+
 import org.springframework.data.mongodb.core.*;
 import org.springframework.data.mongodb.core.query.Query;
 
@@ -16,9 +18,9 @@ public class MongoCardRepository implements CardRepository {
   public MongoCardRepository(final String databaseName) {this.databaseName = databaseName;}
 
   @Override
-  public CardWithData getCardWithDataFromCard(final com.runeterrahelper.cards.Card card) {
+  public Optional<CardWithData> getCardWithDataFromCard(final com.runeterrahelper.cards.Card card) {
     MongoOperations mongoOps = new MongoTemplate(MongoClients.create(), databaseName);
-    MongoCard mongoCard = mongoOps.findOne(new Query(where("cardCode").is(card.getCode())), MongoCard.class, "cards");
-    return new CardWithData(card, CardType.CHAMPION, mongoCard.getName());
+    return Optional.ofNullable(mongoOps.findOne(new Query(where("cardCode").is(card.getCode())), MongoCard.class, "cards"))
+                   .map(mongoCard -> new CardWithData(card, CardType.CHAMPION, mongoCard.getName()));
   }
 }
