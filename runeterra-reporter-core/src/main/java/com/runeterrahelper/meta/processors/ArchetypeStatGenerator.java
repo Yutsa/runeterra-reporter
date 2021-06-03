@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-class ArchetypeStatGenerator {
+public class ArchetypeStatGenerator {
 
   private final ArchetypeCompatibilityChecker archetypeCompatibilityChecker;
   List<ArchetypeStat> archetypeStats = new ArrayList<>();
