@@ -42,12 +42,12 @@ public class CardCopies {
       return false;
     }
     final CardCopies that = (CardCopies) o;
-    return numberOfCopies == that.numberOfCopies && card.equals(that.card);
+    return card.equals(that.card);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(numberOfCopies, card);
+    return Objects.hash(card);
   }
 
   @Override
