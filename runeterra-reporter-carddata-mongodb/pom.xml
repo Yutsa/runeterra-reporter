@@ -28,11 +28,6 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>io.projectreactor</groupId>
-			<artifactId>reactor-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
 			<groupId>com.runeterrareporter</groupId>
 			<artifactId>runeterra-reporter-core</artifactId>
 			<version>1.0-SNAPSHOT</version>
