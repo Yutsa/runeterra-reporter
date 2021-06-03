@@ -4,6 +4,11 @@ public class MongoCard {
 
   private String cardCode;
   private String name;
+  private String rarity;
+
+  public String getRarity() {
+    return rarity;
+  }
 
   public String getCardCode() {
     return cardCode;
@@ -25,9 +30,11 @@ public class MongoCard {
 
   @Override
   public String toString() {
-    return "Card{" +
+    return "MongoCard{" +
            "cardCode='" + cardCode + '\'' +
            ", name='" + name + '\'' +
+           ", rarity='" + rarity + '\'' +
            '}';
   }
+
 }

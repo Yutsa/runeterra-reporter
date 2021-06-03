@@ -21,6 +21,6 @@ public class MongoCardRepository implements CardRepository {
   public Optional<CardWithData> getCardWithDataFromCard(final com.runeterrahelper.cards.Card card) {
     MongoOperations mongoOps = new MongoTemplate(MongoClients.create(), databaseName);
     return Optional.ofNullable(mongoOps.findOne(new Query(where("cardCode").is(card.getCode())), MongoCard.class, "cards"))
-                   .map(mongoCard -> new CardWithData(card, CardType.CHAMPION, mongoCard.getName()));
+                   .map(mongoCard -> new CardWithData(card, mongoCard.getRarity().equals("Champion") ? CardType.CHAMPION : CardType.SPELL, mongoCard.getName()));
   }
 }
