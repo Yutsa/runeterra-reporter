@@ -37,6 +37,7 @@ public class CSVMetaReportWriter implements MetaReportWriter {
             for (ArchetypeStat archetype : report.getArchetypes()) {
                 writeArchetypeData(archetype);
             }
+            writer.flush();
         } catch (IOException e) {
             logger.error("Error when trying to write the csv report to file.");
             logger.debug("", e);

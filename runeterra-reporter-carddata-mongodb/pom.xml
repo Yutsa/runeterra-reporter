@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.runeterrareporter</groupId>
 	<artifactId>runeterra-reporter-carddata-mongodb</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0-SNAPSHOT</version>
 	<name>carddata-mongodb</name>
 	<description>A MongoDB implementation of the card data for RuneterraReporter</description>
 	<properties>

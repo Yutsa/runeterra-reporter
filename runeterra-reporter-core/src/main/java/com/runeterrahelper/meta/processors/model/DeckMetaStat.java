@@ -29,4 +29,13 @@ public class DeckMetaStat implements Comparable<DeckMetaStat> {
     public int compareTo(DeckMetaStat deckMetaStat) {
         return deckMetaStat.getNumberOfGamesPlayed() - numberOfGamesPlayed;
     }
+
+    @Override
+    public String toString() {
+        return "DeckMetaStat{" +
+                "deck=" + deck +
+                ", numberOfGamesPlayed=" + numberOfGamesPlayed +
+                ", winrate=" + winrate +
+                '}';
+    }
 }
