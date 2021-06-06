@@ -1,4 +1,4 @@
-package com.runeterrahelper.carddatamongodb;
+package com.runeterrahelper.cardrepository.mongodb;
 
 import static org.springframework.data.mongodb.core.query.Criteria.where;
 

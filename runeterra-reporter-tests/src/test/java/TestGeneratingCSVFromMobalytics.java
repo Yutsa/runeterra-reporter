@@ -1,10 +1,12 @@
 import com.runeterrahelper.archetypes.ArchetypeCompatibilityChecker;
-import com.runeterrahelper.carddatamongodb.MongoCardRepository;
+
+import com.runeterrahelper.cardrepository.mongodb.MongoCardRepository;
 import com.runeterrahelper.meta.outputs.CSVMetaReportWriter;
 import com.runeterrahelper.meta.processors.ArchetypeStatGenerator;
 import com.runeterrahelper.meta.processors.MetaReporter;
 import com.runeterrahelper.meta.processors.model.MetaReport;
 import com.runeterrahelper.mobalytics.datasource.MobalyticsDataSource;
+
 import org.junit.jupiter.api.Test;
 
 public class TestGeneratingCSVFromMobalytics {

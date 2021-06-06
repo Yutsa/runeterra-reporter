@@ -1,4 +1,4 @@
-package com.runeterrahelper.carddatamongodb;
+package com.runeterrahelper.cardrepository.mongodb;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

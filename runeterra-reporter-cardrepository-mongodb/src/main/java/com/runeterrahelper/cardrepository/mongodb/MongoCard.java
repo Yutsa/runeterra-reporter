@@ -1,4 +1,4 @@
-package com.runeterrahelper.carddatamongodb;
+package com.runeterrahelper.cardrepository.mongodb;
 
 public class MongoCard {
 

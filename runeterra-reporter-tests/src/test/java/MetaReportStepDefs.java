@@ -5,7 +5,7 @@ import java.util.List;
 import org.assertj.core.api.SoftAssertions;
 
 import com.runeterrahelper.archetypes.ArchetypeCompatibilityChecker;
-import com.runeterrahelper.carddatamongodb.MongoCardRepository;
+import com.runeterrahelper.cardrepository.mongodb.MongoCardRepository;
 import com.runeterrahelper.cards.*;
 import com.runeterrahelper.cards.repository.CardRepository;
 import com.runeterrahelper.decks.*;

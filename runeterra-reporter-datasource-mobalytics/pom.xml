@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.runeterrareporter</groupId>
-    <artifactId>runeterra-reporter-mobalytics-datasource</artifactId>
+    <artifactId>runeterra-reporter-datasource-mobalytics</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
@@ -48,7 +48,7 @@
         </dependency>
         <dependency>
             <groupId>com.runeterrareporter</groupId>
-            <artifactId>runeterra-reporter-carddata-mongodb</artifactId>
+            <artifactId>runeterra-reporter-cardrepository-mongodb</artifactId>
             <version>1.0-SNAPSHOT</version>
             <scope>test</scope>
         </dependency>
