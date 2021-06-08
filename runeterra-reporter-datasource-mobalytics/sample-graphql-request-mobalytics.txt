@@ -1,0 +1,31 @@
+{
+  lor {
+    profile {
+      deckStats(filters: {loginHash: "99a0b982-df16-4e0f-9b3c-7c48389c9d11", count: 100, queues: RANKED}, sorting: MATCHES) {
+        items {
+          cardsCode
+          wins
+          loses
+          lastTimePlayed
+        }
+      }
+      matchesHistory(filters: {loginHash: "99a0b982-df16-4e0f-9b3c-7c48389c9d11", count: 50}) {
+        items {
+          subject {
+            cardsCode
+          }
+          opponent {
+            cardsCode
+            player {
+              name
+            }
+          }
+          result
+          startedAt
+          turns
+        }
+        total
+      }
+    }
+  }
+}
