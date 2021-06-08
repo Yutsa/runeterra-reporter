@@ -34,7 +34,7 @@ public class ArchetypeGroupingStepDefs {
 
   @When("the system checks if the deck {string} is compatible with the archetype")
   public void the_system_checks_if_the_deck_is_compatible_with_the_archetype(String deckCode) {
-    isCompatible = new ArchetypeCompatibilityChecker().isArchetypeCompatibleWithDeck(archetype, Deck.fromCode(deckCode));
+    isCompatible = new ArchetypeCompatibilityChecker().isArchetypeCompatibleWithDeck(archetype, deckWithDataFactory.fromCode(deckCode));
   }
 
   @Then("it should not be compatible")

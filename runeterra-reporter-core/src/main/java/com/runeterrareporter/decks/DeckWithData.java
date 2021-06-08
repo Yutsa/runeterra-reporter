@@ -12,6 +12,10 @@ public class DeckWithData extends Deck {
     public DeckWithData(List<CardWithData> cards) {
         this.cards = cards;
     }
+    
+    public List<CardWithData> getCardsWithData() {
+        return cards;
+    }
 
     public Set<CardWithData> getChampions() {
         return cards.stream()
