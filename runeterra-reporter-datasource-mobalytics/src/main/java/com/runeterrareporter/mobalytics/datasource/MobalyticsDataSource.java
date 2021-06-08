@@ -58,6 +58,6 @@ public class MobalyticsDataSource implements MetaDatasource {
     }
 
     private URI createURI() {
-        return URI.create("http://lor.mobalytics.gg/api/v2/meta/statistics/decks?sortBy=matchesDesc&from=0&count=200&rank=master&rank=diamond&rank=platinium&threshold=all");
+        return URI.create("http://lor.mobalytics.gg/api/v2/meta/statistics/decks?sortBy=matchesDesc&from=0&count=1000&rank=master&rank=diamond&rank=platinium&threshold=all");
     }
 }

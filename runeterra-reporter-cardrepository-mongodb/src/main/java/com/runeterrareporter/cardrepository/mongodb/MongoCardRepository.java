@@ -14,13 +14,14 @@ import com.runeterrareporter.cards.repository.*;
 
 public class MongoCardRepository implements CardRepository {
 
-  private final String databaseName;
+  private final MongoOperations mongoOps;
 
-  public MongoCardRepository(final String databaseName) {this.databaseName = databaseName;}
+  public MongoCardRepository(final String databaseName) {
+    mongoOps = new MongoTemplate(MongoClients.create(), databaseName);
+  }
 
   @Override
   public Optional<CardWithData> getCardWithDataFromCard(final Card card) {
-    MongoOperations mongoOps = new MongoTemplate(MongoClients.create(), databaseName);
     return Optional.ofNullable(mongoOps.findOne(new Query(where("cardCode").is(card.getCode())), MongoCard.class, "card"))
                    .map(mongoCard -> new CardWithData(card, mongoCard.getRarity().equals("Champion") ? CardType.CHAMPION : CardType.SPELL, mongoCard.getName()));
   }
